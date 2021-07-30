@@ -31,4 +31,4 @@ function loadPage() {
 //         iframe.src = ssCanvas2
 //         newTab.href = ssCanvas2;
 //     }
-});
+// });
