@@ -13,22 +13,22 @@ function loadPage() {
             if (myData.admin || myData.lead){
                 $(teamSelector).removeClass('hide')
             }
-            if (myData.team == "Team 1") {
-                iframe.src = ssCanvas1;
-                newTab.href = ssCanvas1;
-            } else if (myData.team == "Team 2") {
-                iframe.src = ssCanvas2;
-                newTab.href = ssCanvas2;
-            }
+            // if (myData.team == "Team 1") {
+            //     iframe.src = ssCanvas1;
+            //     newTab.href = ssCanvas1;
+            // } else if (myData.team == "Team 2") {
+            //     iframe.src = ssCanvas2;
+            //     newTab.href = ssCanvas2;
+            // }
         })
     })
 }
-$(teamSelector).change(() => {
-    if (teamSelector.value == 1) {
-        iframe.src = ssCanvas1
-        newTab.href = ssCanvas1;
-    } else if (teamSelector.value == 2) {
-        iframe.src = ssCanvas2
-        newTab.href = ssCanvas2;
-    }
+// $(teamSelector).change(() => {
+//     if (teamSelector.value == 1) {
+//         iframe.src = ssCanvas1
+//         newTab.href = ssCanvas1;
+//     } else if (teamSelector.value == 2) {
+//         iframe.src = ssCanvas2
+//         newTab.href = ssCanvas2;
+//     }
 });
