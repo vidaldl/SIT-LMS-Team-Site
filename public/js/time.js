@@ -12,7 +12,7 @@ var minutes = 15;
 var seconds = 00;
 var timer;
 const clockInB = document.getElementById('checkInBtn');
-const clockOutB = document.getElementById('checkOutBtn');
+// const clockOutB = document.getElementById('checkOutBtn');
 const clockInOut = document.getElementById('last-checked');
 const breakText = document.getElementById('last-break');
 const mins = document.getElementById('mins');
@@ -26,9 +26,9 @@ const dateTimeDate = document.getElementById("date");
 
 clockInB.addEventListener('click', function () {
     var setDate = editDate(new Date());
-    clockOutB.classList.remove("hiddenBtn");
-    clockInB.classList.add("hiddenBtn");
-    if (!data.time.check) {
+    // clockOutB.classList.remove("hiddenBtn");
+    // clockInB.classList.add("hiddenBtn");
+    // if (!data.time.check) {
         db.collection('users').doc(userId).update({
             "time.checkKey": setDate,
             "time.check": true,
@@ -38,35 +38,35 @@ clockInB.addEventListener('click', function () {
             "start": setDate.slice(-5)
         })
         window.open('https://www.myworkday.com/byuhi/d/home.htmld', '_blank');
-        window.open('https://chat.google.com/room/AAAAGWGIzV4', '_blank');
-    } else {
-        alert("You are already logged in");
-    }
+        // window.open('https://chat.google.com/room/AAAAGWGIzV4', '_blank');
+    // } else {
+    //     alert("You are already logged in");
+    // }
     resetBreak();
 });
-clockOutB.addEventListener('click', function () {
-    var setDate = editDate(new Date());
-    clockOutB.classList.add("hiddenBtn");
-    clockInB.classList.remove("hiddenBtn");
-    if (data.time.check) {
-        console.log(data.time.check);
-        db.collection('users').doc(userId).update({
-            "time.checkKey": setDate,
-            "time.check": false,
-            "time.breakAllowed": false
-        });
-
-        db.collection('users').doc(userId).collection('hoursWorked').doc(data.time.checkKey).update({
-            "end": setDate.slice(-5)
-        })
-        window.open('https://www.myworkday.com/byuhi/d/home.htmld', '_blank');
-        //alerts the user 
-    } else {
-        alert("You are already logged out");
-    }
-    resetBreak();
-
-});
+// clockOutB.addEventListener('click', function () {
+//     var setDate = editDate(new Date());
+//     clockOutB.classList.add("hiddenBtn");
+//     clockInB.classList.remove("hiddenBtn");
+//     if (data.time.check) {
+//         console.log(data.time.check);
+//         db.collection('users').doc(userId).update({
+//             "time.checkKey": setDate,
+//             "time.check": false,
+//             "time.breakAllowed": false
+//         });
+//
+//         db.collection('users').doc(userId).collection('hoursWorked').doc(data.time.checkKey).update({
+//             "end": setDate.slice(-5)
+//         })
+//         window.open('https://www.myworkday.com/byuhi/d/home.htmld', '_blank');
+//         //alerts the user
+//     } else {
+//         alert("You are already logged out");
+//     }
+//     resetBreak();
+//
+// });
 breakB.addEventListener('click', function () {
     var setDate = editDate(new Date());
     if (data.time.break) {
@@ -86,9 +86,7 @@ breakB.addEventListener('click', function () {
         localStorage.setItem('seconds', seconds);
         clearInterval(timer);
     } else {
-        if (!data.time.check) {
-            alert("You are logged out. No breaks are allowed");
-        } else {
+
             // Start Break
             breakB.classList.add('expanded');
             db.collection('users').doc(userId).update({
@@ -100,7 +98,7 @@ breakB.addEventListener('click', function () {
             });
             //runs this variable every second
             timer = setInterval(countdown, 1000);
-        }
+
     }
 });
 function loadTimer() {
@@ -119,23 +117,24 @@ function loadTimer() {
             }
             if (data.time.check != null) {
                 if (data.time.check) {
-                    clockOutB.classList.remove("hiddenBtn");
-                    clockInB.classList.add("hiddenBtn");
-                    clockInOut.innerHTML = "Clocked in at " + prettyTime(data.time.checkKey.slice(-5));
+                    // clockOutB.classList.remove("hiddenBtn");
+                    // clockInB.classList.add("hiddenBtn");
+                    // clockInOut.innerHTML = "Clocked in at " + prettyTime(data.time.checkKey.slice(-5));
                 } else{
-                    clockInOut.innerHTML = "Clocked out at " + prettyTime(data.time.checkKey.slice(-5));
+                    // clockInOut.innerHTML = "Clocked out at " + prettyTime(data.time.checkKey.slice(-5));
                 }
                 if (data.time.break) {
                     breakBText.innerHTML = "Stop Break"
-                    breakText.innerHTML = "Break Started: " + prettyTime(data.time.breakKey.slice(-5));
+                    // breakText.innerHTML = "Break Started: " + prettyTime(data.time.breakKey.slice(-5));
                 } else {
                     breakBText.innerHTML = "Start Break"
-                    breakText.innerHTML = "Break Stopped: " + prettyTime(data.time.breakKey.slice(-5));
+                    // breakText.innerHTML = "Break Stopped: " + prettyTime(data.time.breakKey.slice(-5));
                 }
             }
             printTimer();
 
         })
+    timer = resetBreak();
 }
 function countdown() {
     if (data.time.break) {
