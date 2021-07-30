@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TechOps Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/misc/byui_favicon.gif">
+    <link type="text/css" rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+    <img id="backgroundImg" src="assets/banners/bannerPic.png" alt="Beautiful Sunset">
+    <section>
+        <div id="logo">
+            <img id="school" src="assets/misc/byuiLogo.png">
+            <img id="techops" src="assets/logos/logo.png">
+        </div>
+        <div id="lower">
+            <div class="fieldbox hide" id="namebox">
+                <span>Name</span>
+                <input id="displayName" type="Name" placeholder="Name">
+            </div>
+            <div class="fieldbox" id="emailbox">
+                <span>Email</span>
+                <input id="login" type="Login" placeholder="E-mail">
+            </div>
+            <div class="fieldbox" id="passwordbox">
+                <span> Password </span>
+                <input id="password" type="Password" placeholder="Password">
+            </div>
+
+            <span id="detail">Your e-mail username is the provided<br> account from your institution.</span>
+            <div id="buttons">
+                <button class="button" id="btnlogin" onclick="login()" type="submit"><span>Login</span></button>
+                <button class="button" id="btnsignup" onclick="signup()"><span>Sign Up</span></button>
+            </div>
+            <span id="recover">Forgot Your Username/Password?</span>
+        </div>
+    </section>
+
+</body>
+<script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script> 
+<script src="js/main.js"></script>
+<script src="js/index.js"></script>
+
+</html>

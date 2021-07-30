@@ -1,0 +1,93 @@
+<!---------------------------------------------
+- SCHEDULE.HTML Tech-Ops Portal Home Page
+- 
+- 1. Head
+- 2. Body
+- 3. Header
+- 4. Main
+- 5. Scripts
+---------------------------------------------->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!---------------------------------------------
+- 1. Head
+---------------------------------------------->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/misc/byui_favicon.gif" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!-- Scripts -->
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <title>Schedule | Quality Assurance Portal</title>
+</head>
+
+<!---------------------------------------------
+- 2. Body
+---------------------------------------------->
+
+<body>
+
+    <!---------------------------------------------
+    - 3. Navigation Bar
+    ---------------------------------------------->
+
+    <nav class="col1">
+        <a href="home.html"><img id="logo" src="assets/logos/logo.png"></a>
+        <div class="nav-links flex-container">
+            <a class="current-page" href="#">Schedule</a>
+            <a href="store.html">Store</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        <div id="nav-img-box">
+            <img id="nav-img" src="" alt="">
+        </div>
+    </nav>
+
+    <!---------------------------------------------
+    - 4. Main
+    ---------------------------------------------->
+
+    <main id="scheduleSection" class="col9">
+        
+        <section>
+            <div class="col10 teamSelector">
+                <select class="teamItem hide" id="selectTeam">
+                    <option value="0">Select Team</option>
+                    <option id="canvas1" value="1">Team 1</option>
+                    <option id="canvas2" value="2">Team 2</option>
+                </select>
+                <a class="teamItem" id="newTab" target="_blank"
+                    href="https://docs.google.com/spreadsheets/d/1qrrSnZcuTThKtrHlwndkOwEuk5e7QpYu4DBItT9VWow/edit#gid=266358356">
+                    <i class="fas fa-external-link-alt fa-lg"></i>
+                </a>
+            </div>
+            <div id="teams" class="col10"><iframe id="spreadsheet" class="col10 spreadsheet"
+                    src="https://docs.google.com/spreadsheets/d/1qrrSnZcuTThKtrHlwndkOwEuk5e7QpYu4DBItT9VWow/edit#gid=266358356"></iframe>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+<!---------------------------------------------
+- 5. Scripts
+---------------------------------------------->
+<script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script> 
+<script src="js/main.js"></script>
+<script src="js/schedule.js"></script>
+
+</html>

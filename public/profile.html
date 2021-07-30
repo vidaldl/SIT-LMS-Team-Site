@@ -1,0 +1,274 @@
+<!---------------------------------------------
+- PROFILE.HTML Tech-Ops Portal Home Page
+- 
+- 1. Head
+- 2. Body
+- 3. Navigation Bar
+- 4. Main
+- 5. Scripts
+---------------------------------------------->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!---------------------------------------------
+- 1. Head
+---------------------------------------------->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/misc/byui_favicon.gif" />
+
+    <!-- Scripts -->
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>Profile | Quality Assurance Portal</title>
+</head>
+
+<!---------------------------------------------
+- 2. Body
+---------------------------------------------->
+
+<body>
+
+    <!---------------------------------------------
+    - 3. Navigation Bar
+    ---------------------------------------------->
+
+    <nav class="col1">
+        <a href="home.html"><img id="logo" src="assets/logos/logo.png"></a>
+        <div class="nav-links flex-container">
+            <a href="schedule.html">Schedule</a>
+            <a href="store.html">Store</a>
+            <a class="current-page" href="profile.html">Profile</a>
+        </div>
+        <div id="nav-img-box">
+            <img id="nav-img" src="" alt="">
+        </div>
+    </nav>
+
+    <!---------------------------------------------
+    - 4. Main
+    ---------------------------------------------->
+
+    <main class="flex-container col9" id="profile-main">
+
+        <section class="flex-container profile-top-bar col10">
+            <h2 class="page-title-profile page-title">Profile</h2>
+            <div class="flex-container" id="clock-box">
+                <h2 id="signOutBtn">Sign Out</h2>
+                <!-- <i class="fas fa-history fa-3x" id="clock"></i> -->
+            </div>
+        </section>
+
+        <div id="main-profile">
+            <section class="col10 flex-container" id="profile-content">
+
+                <section class="profile-box-info col4" id="profile-info">
+                    <div class="col10">
+                        <i class="fas fa-pencil-alt fa-2x" id="editContact"></i>
+                        <h3 id="dbName"></h3>
+                        <p id="dbTitle"></p>
+                        <p id="dbTeam"></p>
+                        <p id="dbPhone"></p>
+                        <p id="dbEmail"></p>
+                    </div>
+                    <div class="col10" id="info">
+                        <h4>Info</h4>
+                        <p id="dbBirth"></p>
+                        <p id="dbMajor"></p>
+                        <p id="dbTrack"></p>
+                        <p id="dbGradDate"></p>
+                    </div>
+                    <div class="col10" id="aboutMe">
+                        <h4>About Me</h4>
+                        <p id="dbAboutMe"></p>
+                    </div>
+                </section>
+
+                <section class="profile-box flex-container col4" id="resources">
+                    <h3>Resources</h3>
+                    <div class="flex-container col10" id="links-box">
+                        <div class="flex-container profile-links col5">
+                            <a href="https://docs.google.com/document/d/1BHM-fW4LRBSb73uvN8jLHU9_v9Q91R5aHdBM0Srj1SA/edit?usp=sharing"
+                                target="_blank">Work Policies</a>
+                            <a target="_blank"
+                                href="https://byu-idaho.screenstepslive.com/admin/v2/sites/18626/manuals/70207/chapters/236350/articles">Screen
+                                Steps</a>
+                            <a href="http://byu-idaho.screenstepslive.com/s/18626/m/70207"
+                                target="_blank">Screen-steps/Training</a>
+                            <a target="_blank"
+                                href="http://www.byui.edu/executive-strategy-and-planning/institutional-research/outcomes-and-assessments/course-level">Outcomes
+                                and Assessments</a>
+                            <a id="styleGuide" target="black"
+                                href="https://byuitechops.github.io/portal/styleguide.html">Style Guide</a>
+                            <a class="hide" id="storeAdmin" target="_blank"
+                                href="https://byuitechops.github.io/oldPortal/inventory.html">Store Inventory</a>
+
+                        </div>
+                        <div class="flex-container profile-links col5">
+                            <a target="_blank" href="https://www.myworkday.com/byuhi/d/home.htmld">Workday</a>
+                            <a href="https://docs.google.com/document/d/1G_bc5LFy2V5TrO4riSLdPtsH2JvYIlvtGRxi1JYUjlk/edit?usp=sharing"
+                                target="_blank">Employee Handbook</a>
+                            <a target="_blank" href="https://canvas.instructure.com/styleguide">Canvas Style
+                                Guide</a>
+                            <a href="/oldPortal/timeAdmin.html" class="hide"> View/Edit Accumulated Time </a>
+                            <a class="hide" id="timeAdmin" href="admin.html">Admin Tools</a>
+                        </div>
+                    </div>
+                    <div class="flex-container flex-right col10 themes-box">
+                        <h3>Themes</h3>
+                        <section class="themes">
+                            <button class="btn1" id="light" data-theme="light"></button>
+                            <button class="btn1" id="dark-blue" data-theme="dark-blue"></button>
+                            <button class="btn1" id="dark" data-theme="dark"></button>
+                        </section>
+                    </div>
+                    <section class="flex-container col10" id="team-points">
+                        <h3>Team Points</h3>
+                        <div class="flex-container col10" id="select-points">
+                            <select name="" id="pointsOptions" class="profile-points">
+                                <option id="pointStart" value="start">- - -</option>
+                            </select>
+                            <button type="submit" id="submitPoints" class="btn-profile"
+                                onclick="submitTeamPoints()">Submit</button>
+                        </div>
+                    </section>
+                    <section class="flex-container col10" id="edit-team-points">
+                        <button type="submit" id="editPoints" class="btn-profile edit-profile-points hide"
+                            onclick="editTeamPoints()">Edit Points</button>
+                    </section>
+                </section>
+
+            </section>
+        </div>
+
+
+        <section class="table-box hide" id="admin-tool-points">
+            <div>
+                <h2>Team Points Criteria<span id="total"> Points: 1471</span></h2>
+                <a id="add-point-criteria" onclick="">
+                    <i class="fas fa-plus fa-2x"></i>
+                </a>
+                <a class="back-to-profile" href="profile.html">
+                    <i class="fas fa-arrow-left fa-2x"></i>
+                </a>
+            </div>
+            
+            <table class="table-generate" id="points-generate">
+                <aside id="add-points-aside"></aside>
+            </table>
+        </section>
+
+    </main>
+
+
+    <div class="hide popup" id="editInfo">
+        <div class="popup-content">
+            <h2>Edit Your Information</h2>
+            <span>Name: </span>
+            <input id="editName" type="text" placeholder="Name + Last Name">
+            <span>Phone Number: </span>
+            <input id="editPhone" type="tel" placeholder="####-###-####">
+            <span>Major: </span>
+            <input id="editMajor" type="text" placeholder="Course of Study">
+            <span>Track: </span>
+            <!-- <input id="editTrack" type="text" list="tracks" placeholder="Season/Season"> -->
+            <select id="editTrack">
+                <option id="Winter/Spring">Winter/Spring</option>
+                <option id="Spring/Fall">Spring/Fall</option>
+                <option id="Fall/Winter">Fall/Winter</option>
+                <option id="Year Round">Year Round (Overwrite)"</option>
+            </select>
+            <span>Graduation Date: </span>
+            <input id="editGradDate" type="text" placeholder="Year and Semester">
+            <span>Birthday Date: </span>
+            <input id="displayBirthday" type="text">
+            <select id="editBirthdayMonth" name="birthdayMonth">
+                <option id="Jan">Jan</option>
+                <option id="Feb">Feb</option>
+                <option id="Mar">Mar</option>
+                <option id="Apr">Apr</option>
+                <option id="May">May</option>
+                <option id="Jun">Jun</option>
+                <option id="Jul">Jul</option>
+                <option id="Aug">Aug</option>
+                <option id="Sep">Sep</option>
+                <option id="Oct">Oct</option>
+                <option id="Nov">Nov</option>
+                <option id="Dec">Dec</option>
+            </select>
+            <input id="editBirthdayDay" type="number" min="0" max="31">
+            <!-- <input id="editBirthday" type="text" placeholder="Ex: 01/01"> -->
+            <span class="hide">Team: </span>
+            <span id="aboutMe">About You:</span>
+            <textarea id="editAboutMe" type="text"> Tell us more about yourself </textarea>
+            <div class="button-box">
+                <button id="submitInfoChanges">Submit</button>
+                <button id="cancelInfoChanges">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hide popup" id="toolTipBox">
+        <div class="popup-content">
+            <h2>Accumulated Time</h2>
+            <div id="box"></div>
+            <p id="redeemTime">##:##</p>
+            <div class="button-box">
+                <button id="redeemBtn">Redeem</button>
+                <button id="cancelRedeemBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="usingRedeem" class="hide popup">
+        <div class="popup-content" id="usingRedeemBox">
+            <h2>Redeem Confirmation</h2>
+            <p>Accumulated Time</p>
+            <h1 id="accumulated">00:00</h1>
+            <p id="howMuch">How much time would you like to redeem? (Hours)</p>
+
+            <input id="timeDesired" type="number" min="0"></input>
+            <div class="button-box">
+                <button id="redeemBtn2">Redeem</button>
+                <button id="cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmRedeem" class="hide popup">
+        <div class="popup-content">
+            <img src="/oldPortal/assets/check-01.png">
+            <h2>Redeemed Hours</h2>
+            <p id="resultRedeem">00:00</p>
+            <button id="close">Ok</button>
+        </div>
+    </div>
+
+    <div class="popup hide" id="yay-points">
+        <div class="popup-content" id="confirm-content">
+            <h2 id="yayText">You're a Champion!</h2>
+        </div>
+    </div>
+
+</body>
+
+<!---------------------------------------------
+- 5. Scripts
+---------------------------------------------->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+<script src="js/profile.js"></script>
+
+</html>
