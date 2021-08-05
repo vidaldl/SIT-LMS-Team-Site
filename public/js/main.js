@@ -28,7 +28,7 @@ var slideIndex = 0;
 var slides = document.getElementsByClassName("mySlides");
 var timeOutHandler;
 var auth = firebase.auth();
-
+var user = firebase.auth().currentUser;
 
 auth.onAuthStateChanged((firebaseUser) => {
     //checks if the user is already logged in to the system
@@ -53,6 +53,16 @@ auth.onAuthStateChanged((firebaseUser) => {
         loadPage();
     }
 });
+
+
+//handles the sign out button
+document.getElementById("signOut").addEventListener("click", () => {
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+    }).catch(function (error) {
+        // An error happened.
+    });
+})
 
 
 function getData() {
@@ -297,3 +307,4 @@ function setValue(property, value) {
         }
     }
 }
+

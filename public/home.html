@@ -25,9 +25,15 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/misc/byui_favicon.gif" />
 
     <!-- CSS -->
+    <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
@@ -44,194 +50,265 @@
 ---------------------------------------------->
 
 <body>
-
+    <div class="container-fluid">
+        <div class="row main-row">
     <!---------------------------------------------
     - 3. Navigation Bar
     ---------------------------------------------->
-    
-    <nav class="col1">
-        <a href="#"><img id="logo" src="assets/logos/logo.png"></a>
-        <div class="nav-links flex-container">
-            <a href="schedule.html">Schedule</a>
-            <a href="store.html">Store</a>
-            <a href="profile.html">Profile</a>
-        </div>
-        <div id="nav-img-box">
-            <img id="nav-img" src="" alt="">
-        </div>
-    </nav>
 
-    <!---------------------------------------------
-    - 4. Main
-    ---------------------------------------------->
 
-    <main class="col9">
 
-        <h1 class="page-title col7">Home</h1>
+            <nav class="col-md-2" id="nav">
+                <div class="row nav-img">
+                    <a href="#"><img class id="logo" src="assets/logos/logo.png"></a>
+                </div>
 
-        <!---------------------------------------------
-        - 4a. SLIDE SHOW
-        -     This is where you will add any announcements
-        -     and banners to the slideshow on the home page
-        -     of the portal.
-        -     If the number of slides changes, make sure to 
-        -     change the number of dots, accordingly.
-        ---------------------------------------------->
-
-        <section class="center-section col8">
-
-            <section id="welcome">
-                
-                <div class="slideshow-container">
-                    <a class="mySlides">
-                        <img src="assets/banners/breakWelcome.jpg">
-                    </a>
-                    <a class="mySlides">
-                        <img src="assets/banners/Team Meeting.jpg">
-                    </a>
-<!--                    <a class="mySlides">-->
-<!--                        <img src="assets/banners/breakWelcome.jpg">-->
-<!--                    </a>-->
-
-                    <a class="slide-button prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="slide-button next" onclick="plusSlides(1)">&#10095;</a>
-
+                <div class="nav-links">
+                    <div class="row">
+                        <a class="col-md-12" href="schedule.html">Schedule</a>
+                        <a class="col-md-12" href="store.html">Store</a>
+<!--                        <a class="col-md-12" href="profile.html">Profile</a>-->
+                    </div>
 
                 </div>
 
-                <div id="dots-box">
-                  <span class="dot" onclick="currentSlide(1)"></span>
-                  <span class="dot" onclick="currentSlide(2)"></span>
-<!--                    <span class="dot" onclick="currentSlide(3)"></span>-->
-                  <!-- <span class="dot" onclick="currentSlide(5)"></span> -->
-                </div>
 
-            </section>
+                <div class="row logout-row">
+                    <div class="col-md-12 align-self-end mb-3">
+                        <div class="row text-center">
+                            <a class="mx-auto" href="profile.html">
+                                <img class="nav-profile mb-3" src="https://firebasestorage.googleapis.com/v0/b/techopsportal.appspot.com/o/profile%2Fdefault-image.png?alt=media&token=e5f71c77-b613-4a6e-baba-5206a4d71041" alt="">
+                            </a>
+                            <a id="signOut" href="" class="nav-logout col-md-12 ">Logout</a>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--            <div id="nav-img-box">-->
+                <!--                <img id="nav-img" src="" alt="">-->
+                <!--            </div>-->
+            </nav>
 
             <!---------------------------------------------
-            - 4b. HOME PAGE LINKS
-            -     This is where you will update any links, 
-            -     images, or style that need to be updated 
-            -     on the home page of the portal.
+            - 4. Main
             ---------------------------------------------->
 
-            <section class="links-container flex-container">
 
-                <div class="box-link col4" id="canvas">
-                    <a href="https://byui.instructure.com/login/canvas" target="_blank" >
-                        <p>Canvas</p>
-                        <img src="assets/icons/canvas.png" alt="Canvas Icon"/>
-                    </a>
+            <main class="col-md-10 main">
+                <div class="container-fluid">
+                    <div class="row clearfix" style="">
+                        <div class="col-md-9">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <h1 class="page-title col-md-12">Home</h1>
+                                </div>
+
+
+                                    <!---------------------------------------------
+                                - 4a. SLIDE SHOW
+                                -     This is where you will add any announcements
+                                -     and banners to the slideshow on the home page
+                                -     of the portal.
+                                -     If the number of slides changes, make sure to
+                                -     change the number of dots, accordingly.
+                                ---------------------------------------------->
+                                <div class="row">
+<!--                                    <section id="welcome" class="col-md-12">-->
+                                    <section class="col-md-12">
+
+                                        <div class="owl-carousel owl-theme">
+                                            <div class="item">
+                                                <img class="carousel-img" src="assets/banners/breakWelcome.jpg">
+                                            </div>
+                                            <div class="item">
+                                                <img class="carousel-img" src="assets/banners/Team Meeting.jpg">
+                                            </div>
+                                        </div>
+
+<!--                                        <div class="slideshow-container">-->
+<!--                                            <a class="mySlides">-->
+<!--                                                <img class="img-fluid" src="assets/banners/breakWelcome.jpg">-->
+<!--                                            </a>-->
+<!--                                            <a class="mySlides">-->
+<!--                                                <img class="img-fluid" src="assets/banners/Team Meeting.jpg">-->
+<!--                                            </a>-->
+
+<!--                                            <a class="slide-button prev" onclick="plusSlides(-1)">&#10094;</a>-->
+<!--                                            <a class="slide-button next" onclick="plusSlides(1)">&#10095;</a>-->
+
+
+<!--                                        </div>-->
+
+<!--                                        <div id="dots-box">-->
+<!--                                            <span class="dot" onclick="currentSlide(1)"></span>-->
+<!--                                            <span class="dot" onclick="currentSlide(2)"></span>-->
+<!--                                            &lt;!&ndash;                    <span class="dot" onclick="currentSlide(3)"></span>&ndash;&gt;-->
+<!--                                            &lt;!&ndash; <span class="dot" onclick="currentSlide(5)"></span> &ndash;&gt;-->
+<!--                                        </div>-->
+
+                                    </section>
+                                </div>
+
+
+                                <!---------------------------------------------
+                                - 4b. HOME PAGE LINKS
+                                -     This is where you will update any links,
+                                -     images, or style that need to be updated
+                                -     on the home page of the portal.
+                                ---------------------------------------------->
+                                <div class="row">
+                                    <section class="container-fluid col-md-12">
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="box-link container" id="canvas">
+                                                    <a href="https://byui.instructure.com/login/canvas" target="_blank" >
+                                                        <p>Canvas</p>
+                                                        <img class="img-fluid" src="assets/icons/canvas.png" alt="Canvas Icon"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="box-link container" id="googledrive">
+                                                    <a href="https://drive.google.com/drive/team-drives" target="_blank" >
+                                                        <p>Google Drive</p>
+                                                        <img class="img-fluid" src="assets/icons/drive.png" alt="Google Drive Icon"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="box-link container" id="workday">
+                                                    <a href="https://www.myworkday.com/byuhi/d/home.htmld" target="_blank" >
+                                                        <p>Workday</p>
+                                                        <img class="img-fluid" src="assets/icons/workday.png" alt="Google Chat Icon"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="box-link container" id="sit-training">
+                                                    <a href="https://byui.instructure.com/courses/86086" target="_blank" >
+                                                        <p>SIT - Training</p>
+                                                        <img class="img-fluid" src="assets/icons/trainingIcon.png" alt="SIT Training Icon"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="box-link container" id="accessibility">
+                                                    <a href="https://byui-accessibility-redemption.web.app/" target="_blank" >
+                                                        <p>Accessibility</p>
+                                                        <img class="img-fluid" src="assets/icons/accessibility.png" alt="Accessibility Icon"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="box-link container" id="office365">
+                                                    <a href="https://outlook.office365.com/owa/?realm=byui.edu&exsvurl=1&ll-cc=1033&modurl=0" target="_blank" >
+                                                        <p>Office 365</p>
+                                                        <img class="img-fluid" src="assets/icons/office365.png" alt="Office 365 Icon"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!--                <div class="box-link" id="katana">-->
+                                            <!--                    <a href="http://10.5.188.187:8000/home" target="_blank" >-->
+                                            <!--                        <p>Katana</p>-->
+                                            <!--                        <img class="img-fluid" src="assets/icons/katana.png" alt="Katana Icon"/>-->
+                                            <!--                    </a>-->
+                                            <!--                </div>-->
+
+                                            <!--                <div class="box-link" id="equella">-->
+                                            <!--                    <a href="https://content.byui.edu/access/home.do" target="_blank" >-->
+                                            <!--                        <p>Equella</p>-->
+                                            <!--                        <img class="img-fluid" src="assets/icons/equella.png" alt="Equella Icon"/>-->
+                                            <!--                    </a>-->
+                                            <!--                </div>-->
+
+                                            <div class="col-md-4">
+                                                <div class="box-link container" id="trello">
+                                                    <a href="https://trello.com/b/J1XtgPNL/active-currdev-projects" target="_blank" >
+                                                        <p>Trello</p>
+                                                        <img class="img-fluid" src="assets/icons/trello.png" alt="Trello Icon"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                    </section>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <!---------------------------------------------
+                        - 4c. HOME RIGHT SIDEBAR
+                        -     This is where you might need to update anything
+                        -     pertaining to what you see on the right sidebar
+                        -     of the home page on the portal.
+                        ---------------------------------------------->
+                        <div class="col-md-3">
+                            <section class="col-md-12">
+
+                                <div id="time-n-date">
+                                    <p id="time"></p>
+                                    <p id="apm"></p>
+                                    <p id="date"></p>
+                                </div>
+
+                                <button id="checkInBtn" class="clock btn2 col-md-12 mb-5">
+                                    Clock In / Out
+                                </button>
+                                <!--            <button id="checkOutBtn" class="clock btn2 hiddenBtn">-->
+                                <!--                Clock Out-->
+                                <!--            </button>-->
+
+                                <!--            <a id="workday-link" href="https://www.myworkday.com/byuhi/d/home.htmld" target="_blank"><h3 id="last-checked"></h3></a>-->
+                                <!--            <h3 id="last-break"></h3>-->
+
+                                <button class="btn2 col-md-12" id="break-button">
+                                    <p id="break-button-text" >Start Break</p>
+                                    <span id="mins">15</span>
+                                    <span>:</span>
+                                    <span id="secs">00</span>
+                                </button>
+
+                            </section>
+                        </div>
+                    </div>
                 </div>
 
-<!--                <div class="box-link" id="pathway">-->
-<!--                    <a href="https://pathway.brightspace.com/d2l/local" target="_blank" >-->
-<!--                        <p>Pathway</p>-->
-<!--                        <img src="assets/icons/pathway.png" alt="Pathway Icon"/>-->
-<!--                    </a>-->
-<!--                </div>-->
+            </main>
 
-                <div class="box-link col4" id="googledrive">
-                    <a href="https://drive.google.com/drive/team-drives" target="_blank" >
-                        <p>Google Drive</p>
-                        <img src="assets/icons/drive.png" alt="Google Drive Icon"/>
-                    </a>
-                </div>
+        </div>
+    </div>
 
-                <div class="box-link col4" id="workday">
-                    <a href="https://www.myworkday.com/byuhi/d/home.htmld" target="_blank" >
-                        <p>Workday</p>
-                        <img src="assets/icons/workday.png" alt="Google Chat Icon"/>
-                    </a>
-                </div>
-
-                <div class="box-link col4" id="sit-training">
-                    <a href="https://byui.instructure.com/courses/86086" target="_blank" >
-                        <p>SIT - Training</p>
-                        <img src="assets/icons/trainingIcon.png" alt="SIT Training Icon"/>
-                    </a>
-                </div>
-
-                <div class="box-link col4" id="accessibility">
-                    <a href="https://byui-accessibility-redemption.web.app/" target="_blank" >
-                        <p>Accessibility</p>
-                        <img src="assets/icons/accessibility.png" alt="Accessibility Icon"/>
-                    </a>
-                </div>
-
-                <div class="box-link col4" id="office365">
-                    <a href="https://outlook.office365.com/owa/?realm=byui.edu&exsvurl=1&ll-cc=1033&modurl=0" target="_blank" >
-                        <p>Office 365</p>
-                        <img src="assets/icons/office365.png" alt="Office 365 Icon"/>
-                    </a>
-                </div>
-
-<!--                <div class="box-link" id="katana">-->
-<!--                    <a href="http://10.5.188.187:8000/home" target="_blank" >-->
-<!--                        <p>Katana</p>-->
-<!--                        <img src="assets/icons/katana.png" alt="Katana Icon"/>-->
-<!--                    </a>-->
-<!--                </div>-->
-
-<!--                <div class="box-link" id="equella">-->
-<!--                    <a href="https://content.byui.edu/access/home.do" target="_blank" >-->
-<!--                        <p>Equella</p>-->
-<!--                        <img src="assets/icons/equella.png" alt="Equella Icon"/>-->
-<!--                    </a>-->
-<!--                </div>-->
-
-                <div class="box-link col4" id="trello">
-                    <a href="https://trello.com/b/J1XtgPNL/active-currdev-projects" target="_blank" >
-                        <p>Trello</p>
-                        <img src="assets/icons/trello.png" alt="Trello Icon"/>
-                    </a>
-                </div>
-
-            </section>
-
-        </section>
-
-        <!---------------------------------------------
-        - 4c. HOME RIGHT SIDEBAR
-        -     This is where you might need to update anything
-        -     pertaining to what you see on the right sidebar
-        -     of the home page on the portal.
-        ---------------------------------------------->
-
-        <section class="right-sidebar col2 flex-container">
-
-            <div id="time-n-date">
-                <p id="time"></p>
-                <p id="apm"></p>
-                <p id="date"></p>
-            </div>
-
-            <button id="checkInBtn" class="clock btn2">
-                Clock In / Out
-            </button>
-<!--            <button id="checkOutBtn" class="clock btn2 hiddenBtn">-->
-<!--                Clock Out-->
-<!--            </button>-->
-
-<!--            <a id="workday-link" href="https://www.myworkday.com/byuhi/d/home.htmld" target="_blank"><h3 id="last-checked"></h3></a>-->
-<!--            <h3 id="last-break"></h3>-->
-            
-            <button class="btn2" id="break-button">
-                <p id="break-button-text" >Start Break</p>
-                <span id="mins">15</span>
-                <span>:</span>
-                <span id="secs">00</span>
-            </button>
-
-        </section>
-    </main>
 </body>
 
 <!---------------------------------------------
 - 5. Scripts
 ---------------------------------------------->
 
+<script src="assets/vendor/owlcarousel/owl.carousel.min.js"></script>
+
 <script src="js/main.js"></script>
 <script src="js/time.js"></script>
+
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        autoplay:true,
+        autoplayHoverPause:true,
+        nav:false,
+        items: 1,
+        singleItem:true,
+        dots: true,
+    })
+</script>
 
 </html>

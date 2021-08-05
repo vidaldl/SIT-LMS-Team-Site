@@ -23,15 +23,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type="image/x-icon" href="assets/misc/byui_favicon.gif" />
-    
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
     <!-- Scripts -->
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
     <title>Store | Quality Assurance Portal</title>
 </head>
 
@@ -41,175 +53,259 @@
 
 <body>
 
-    <!---------------------------------------------
-    - 3. Navigation Bar
-    ---------------------------------------------->
-    
-    <nav class="col1">
-        <a href="home.html"><img id="logo" src="assets/logos/logo.png"></a>
-        <div class="nav-links flex-container">
-            <a href="schedule.html">Schedule</a>
-            <a class="current-page" href="store.html">Store</a>
-            <a href="profile.html">Profile</a>
-        </div>
-        <div id="nav-img-box">
-            <img id="nav-img" src="" alt="">
-        </div>
-    </nav>
+    <div class="container-fluid">
+        <div class="row main-row">
+            <!---------------------------------------------
+            - 3. Navigation Bar
+            ---------------------------------------------->
 
-    <!---------------------------------------------
-    - 4. Main
-    ---------------------------------------------->
-
-    <main class="col9" id="shoppingPage">
-
-        <h1 class="page-title">Store</h1>
-        <button class="store-btn hide" id="invoiceStore">Store Invoice</button>
-        <button class="store-btn hide" id="editStore">Edit Store</button>
-
-        <!---------------------------------------------
-        - 4a. 
-        ---------------------------------------------->
-
-        <section class="snacks-container col6 flex-container" id="snack-container">
-
-        </section>
-
-        <!----------------------------------------------
-        -   SNACKS SECTION
-        -   You do not need to hard code the store items
-        -   in this file. They are dynamically created using
-        -   the store manager's privileges and Javascript.
-        ----------------------------------------------->
-
-        <section class="snacks-section col4 flex-container">
-
-            <!-- SNACK CART -->
-
-            <section class="snack-manage col10" id="snack-cart">
-                <h2>Shopping Cart</h2>
-                <div id="snack-shopping-list">
+            <nav class="col-md-2" id="nav">
+                <div class="row nav-img">
+                    <a href="#"><img class id="logo" src="assets/logos/logo.png"></a>
                 </div>
-                <div id="snack-cart-receipt">
-                    <span class="col7">Total: </span>
-                    <span class="col3" id="shopping-list-total">$0.00</span>
-                </div>
-                <div id="snack-cart-btns">
-                    <button id="snack-cart-cancel">Cancel</button>
-                    <button id="snack-cart-checkout">Check Out</button>
-                </div>
-            </section>
 
-            <!-- SNACK ADD -->
-
-            <section class="snack-manage col10 hide" id="snack-add">
-                <form class="flex-container col10 wrap">
-                    <h2>Add Item</h2>
-                    <p>Name:  </p><input type="text" placeholder="Double Stuff Oreos" id="nameEdit"></input>
-                    <p>Cost:  </p><input type="text" placeholder="0.00" id="priceEdit"></input>
-                    <p>Count: </p><input type="text" placeholder="12" id="countEdit"></input>
-                    <p>Image: </p><input id="add-img" type="file" id="imgFile"></input>
-                    <button id="cancel-add">Cancel Add</button>
-                    <button id="confirm-add">Confirm Add</button>
-                </form>
-            </section>
-
-            <!-- SNACK EDIT -->
-
-            <section class="snack-manage col10 hide" id="snack-edit">
-                <form class="flex-container col10 wrap">
-                    <h2>Edit Item</h2>
-                    <p>Name:  </p><input type="text" id="oldName" readonly>
-                    <p>New Name:  </p><input type="text" id="newName">
-                    <p>Cost:  </p><input type="text" id="editCost">
-                    <p>Count: </p><input type="text"  id="editCount">
-                    <div class="btn-box">
-                        <button id="cancel-edit">Cancel Edit</button>
-                        <button id="confirm-edit">Confirm Edit</button>
+                <div class="nav-links">
+                    <div class="row">
+                        <a class="col-md-12" href="schedule.html">Schedule</a>
+                        <a class="col-md-12" href="store.html">Store</a>
+                        <!--                        <a class="col-md-12" href="profile.html">Profile</a>-->
                     </div>
-                </form>
-            </section>
 
-            <!-- SNACK REQUEST -->
-            <a href="https://docs.google.com/spreadsheets/d/1nAJsMoIojgj2COZSuUziB1CM2qnENKzSSppfpiJZYJc/edit#gid=0" target="_blank">
-                <button class="store-btn" id="request-btn">
-                    Request New Snack!
-                </button>
-            </a>
+                </div>
+
+                <div class="row logout-row">
+                    <div class="col-md-12 align-self-end mb-3">
+                        <div class="row text-center">
+                            <a class="mx-auto" href="profile.html">
+                                <img class="nav-profile mb-3" src="https://firebasestorage.googleapis.com/v0/b/techopsportal.appspot.com/o/profile%2Fdefault-image.png?alt=media&token=e5f71c77-b613-4a6e-baba-5206a4d71041" alt="">
+                            </a>
+                            <a id="signOut" href="" class="nav-logout col-md-12 ">Logout</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </nav>
+
+            <!---------------------------------------------
+            - 4. Main
+            ---------------------------------------------->
+
+            <main class="col-md-10 main" id="shoppingPage">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="container">
+                            <h1 class="page-title">Store</h1>
+                            <div class="row">
+                                <div class="ml-auto">
+                                    <button class="store-btn hide"  id="invoiceStore">Store Invoice</button>
+                                    <button class="store-btn hide " id="editStore">Edit Store</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                        <!---------------------------------------------
+                        - 4a.
+                        ---------------------------------------------->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <section class="snacks-container row" id="snack-container">
+
+                            </section>
+                        </div>
 
 
-            <section class="snack-manage col10 hide" id="request-snack">
-                <form class="flex-container col10 wrap">
-                    <h2>Request Item</h2>
+                        <!----------------------------------------------
+                        -   SNACKS SECTION
+                        -   You do not need to hard code the store items
+                        -   in this file. They are dynamically created using
+                        -   the store manager's privileges and Javascript.
+                        ----------------------------------------------->
+
+                        <section class="snacks-section col-md-4">
+
+                            <!-- SNACK CART -->
+
+                            <section class="snack-manage col-md-12" id="snack-cart">
+                                <div class="container p-3">
+                                    <div class="row">
+                                        <h2 class="col-md-12">Shopping Cart</h2>
+                                        <div class="col-md-12" id="snack-shopping-list">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mt-3 mb-3" id="snack-cart-receipt">
+                                        <span class="col-md-8">Total: </span>
+                                        <span class="col-md-4" id="shopping-list-total">$0.00</span>
+                                    </div>
+                                    <div class="row" id="snack-cart-btns">
+                                        <button class="mr-2" id="snack-cart-cancel">Cancel</button>
+                                        <button id="snack-cart-checkout">Check Out</button>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- SNACK ADD -->
+
+                            <section class="snack-manage col-md-12 hide" id="snack-add">
+                                <form class="container p-3">
+                                    <h2>Add Item</h2>
+                                    <div class="form-group row">
+                                        <label class="col-md-4" for="nameEdit">Name:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" placeholder="Double Stuff Oreos" id="nameEdit">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4" for="priceEdit">Cost:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" placeholder="0.00" id="priceEdit">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4" for="countEdit">Count:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" placeholder="12" id="countEdit">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4" for="imgFile">Image:</label>
+                                        <div class="col-md-8">
+                                            <input id="add-img" type="file" id="imgFile">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <button class="" id="cancel-add">Cancel Add</button>
+                                        <button class="ml-3" id="confirm-add ml-3">Confirm Add</button>
+                                    </div>
+
+                                </form>
+                            </section>
+
+                            <!-- SNACK EDIT -->
+
+                            <section class="snack-manage col-md-12 hide" id="snack-edit">
+                                <form class="container p-3">
+                                    <h2>Add Item</h2>
+                                    <div class="form-group row">
+                                        <label class="col-md-4" for="oldName">Name:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" placeholder="Double Stuff Oreos" id="newName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4" for="priceEdit">Cost:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" placeholder="0.00" id="editCost">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4" for="countEdit">Count:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" placeholder="12" id="editCount">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <button class="" id="cancel-edit">Cancel Add</button>
+                                        <button class="ml-3" id="confirm-edit ml-3">Confirm Add</button>
+                                    </div>
+
+                                </form>
+                            </section>
+
+                            <!-- SNACK REQUEST -->
+                            <a href="https://docs.google.com/spreadsheets/d/1nAJsMoIojgj2COZSuUziB1CM2qnENKzSSppfpiJZYJc/edit#gid=0" target="_blank">
+                                <button class="store-btn" id="request-btn">
+                                    Request New Snack!
+                                </button>
+                            </a>
+
+
+                            <section class="snack-manage col-md-12 hide" id="request-snack">
+                                <form class="flex-container col10 wrap">
+                                    <h2>Request Item</h2>
+                                    <div>
+                                        <p>Item: </p><input type="text" id="newItemName">
+                                    </div>
+                                    <div class="btn-box">
+                                        <button onclick="confirmRequestSnack()">Request</button>
+                                        <button>Cancel</button>
+                                    </div>
+                                </form>
+                            </section>
+
+                        </section>
+
+                    </div>
+                </div>
+
+
+            </main>
+
+
+            <main class="hide" id="invoicePage">
+                <h1 class="page-title">Store</h1>
+                <section id="heading">
+                    <aside id="invoice-sum">
+                        <span>Cash:&nbsp; <span id="cash"></span></span>
+                        <span>Venmo:&nbsp; <span id="venmo"></span></span>
+                        <span>Storage:&nbsp;<span id="storage"></span></span>
+                        <button onclick="submitMoney()">Submit</button>
+                    </aside>
+                </section>
+                <section class="table-box">
                     <div>
-                        <p>Item: </p><input type="text" id="newItemName">
+                        <h2>Invoice - Store</h2>
+                        <a class="back-to-profile" href="store.html">
+                            <img src="assets/misc/backArrow.png" alt="Back to Profile"/>
+                        </a>
                     </div>
-                    <div class="btn-box">
-                        <button onclick="confirmRequestSnack()">Request</button>
-                        <button>Cancel</button>
+                    <div class="container">
+                        <table class="table-generate" id="invoice-table">
+                            <tr>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Total Paid</th>
+                                <th>Payment</th>
+                                <th>User</th>
+                            </tr>
+                        </table>
                     </div>
-                </form>
-            </section>
 
-        </section>
-        
-    </main>
+                </section>
+            </main>
 
+<!--            <div class="popup hide" id="confirm-checkout">-->
+<!--                <div class="popup-content">-->
+<!--                    <h2>Shopping Cart</h2>-->
+<!--                    <div id="confirm-content">-->
+<!--                        <span>Total: </span>-->
+<!--                        <span id="confirm-total"></span>-->
+<!--                        <br>-->
+<!--                        <div class="radio-box">-->
+<!--                            <input type="radio" name="radio" id="radioCash" value="1">Cash</input>-->
+<!--                            <span class="checkmark"></span>-->
+<!--                            <input type="radio" name="radio" id="radioVenmo" value="2">Venmo</input>-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </div>-->
+<!--                        <br>-->
+<!--                        <button id="cancel-purchase">Cancel</button>-->
+<!--                        <button id="confirm-purchase">Purchase</button>-->
+<!--                        <br>-->
+<!--                        <span id="error-purchase"></span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-    <main class="hide" id="invoicePage">
-        <h1 class="page-title">Store</h1>
-        <section id="heading">
-            <aside id="invoice-sum">
-                <span>Cash:&nbsp; <span id="cash"></span></span>
-                <span>Venmo:&nbsp; <span id="venmo"></span></span>
-                <span>Storage:&nbsp;<span id="storage"></span></span>
-                <button onclick="submitMoney()">Submit</button>
-            </aside>
-        </section>
-        <section class="table-box">
-            <div>
-                <h2>Invoice - Store</h2>
-                <a class="back-to-profile" href="store.html">
-                    <img src="assets/misc/backArrow.png" alt="Back to Profile"/>
-                </a>
-            </div>
-            <table class="table-generate" id="invoice-table">
-                <tr>
-                    <th>Date</th>
-                    <th>Items</th>
-                    <th>Total Paid</th>
-                    <th>Payment</th>
-                    <th>User</th>
-                </tr>
-            </table>
-        </section>
-    </main>
+<!--            <div class="popup hide" id="enjoy-snacks">-->
+<!--                <div class="popup-content" id="confirm-content">-->
+<!--                    <h2>Enjoy Your Snacks!</h2>-->
+<!--                </div>-->
+<!--            </div>-->
 
-    <div class="popup hide" id="confirm-checkout">
-        <div class="popup-content">
-            <h2>Shopping Cart</h2>
-            <div id="confirm-content">
-                <span>Total: </span>
-                <span id="confirm-total"></span>
-                <br>
-                <div class="radio-box">
-                    <input type="radio" name="radio" id="radioCash" value="1">Cash</input>
-                    <span class="checkmark"></span>
-                    <input type="radio" name="radio" id="radioVenmo" value="2">Venmo</input>
-                    <span class="checkmark"></span>
-                </div>
-                <br>
-                <button id="cancel-purchase">Cancel</button>
-                <button id="confirm-purchase">Purchase</button>
-                <br>
-                <span id="error-purchase"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup hide" id="enjoy-snacks">
-        <div class="popup-content" id="confirm-content">
-            <h2>Enjoy Your Snacks!</h2>
         </div>
     </div>
 
@@ -218,10 +314,7 @@
 <!---------------------------------------------
 - 5. Scripts
 ---------------------------------------------->
-<script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script> 
+
 <script src="js/main.js"></script>
 <script src="js/store.js"></script>
 

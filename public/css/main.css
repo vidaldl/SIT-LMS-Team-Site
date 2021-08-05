@@ -61,43 +61,43 @@
 * 3. General Style Rules
 ********************************************************** */
 
-.col1  {width: 10%;  }
-.col2  {width: 20%;  }
-.col3  {width: 30%;  }
-.col4  {width: 40%;  }
-.col5  {width: 50%;  }
-.col6  {width: 60%;  }
-.col7  {width: 70%;  }
-.col8  {width: 80%;  }
-.col9  {width: 90%;  }
-.col10 {width: 100%; }
+/*.col1  {width: 10%;  }*/
+/*.col2  {width: 20%;  }*/
+/*.col3  {width: 30%;  }*/
+/*.col4  {width: 40%;  }*/
+/*.col5  {width: 50%;  }*/
+/*.col6  {width: 60%;  }*/
+/*.col7  {width: 70%;  }*/
+/*.col8  {width: 80%;  }*/
+/*.col9  {width: 90%;  }*/
+/*.col10 {width: 100%; }*/
 
-[class*="col"] {
-    float: left;
-}
+/*[class*="col"] {*/
+/*    float: left;*/
+/*}*/
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    outline: none;
-}
-.flex-container {
-    display: flex;
-}
+/** {*/
+/*    box-sizing: border-box;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    outline: none;*/
+/*}*/
+/*.flex-container {*/
+/*    display: flex;*/
+/*}*/
 
-.flex-column{flex-direction: column;}
-.flex-row{flex-direction: row;}
+/*.flex-column{flex-direction: column;}*/
+/*.flex-row{flex-direction: row;}*/
 .hide{display: none !important;}
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto";
-    font-weight: 400;
-    flex-wrap: wrap;
-    background-color: var(--background);
-}
+/*body {*/
+/*    !*margin: 0;*!*/
+/*    !*padding: 0;*!*/
+/*    font-family: "Roboto";*/
+/*    font-weight: 400;*/
+/*    !*flex-wrap: wrap;*!*/
+/*    background-color: var(--background);*/
+/*}*/
 
 .disabled {
     opacity: 0.6;
@@ -113,6 +113,11 @@ nav img {
     padding: 10%;
     transition: transform .2s;
 }
+
+.nav-img {
+    height: 25%;
+
+}
 nav #logo:hover {
     width: 100%;
     -webkit-transform: scale(1.1); /* Safari 3-8 */
@@ -122,21 +127,50 @@ nav #logo:hover {
 nav {
     background-color: var(--first);
     background-image: var(--backgroundGrade);
-    height: 100%;
-    position: fixed;
+    height: 100vh;
+    /*position: fixed;*/
     box-shadow: 5px 0 10px var(--shadow);
-    z-index: 3;
-    overflow: hidden !important;
+    /*z-index: 3;*/
+    /*overflow: hidden !important;*/
 }
+.main-row {
+    height: 100vh;
+
+}
+#nav {
+    height: 100%;
+}
+
+.logout-row {
+    height: 25%;
+}
+
+.nav-profile {
+    width: 90px;
+    padding: 0;
+    border: 3px solid white;
+    border-radius: 100%;
+}
+
+.nav-logout {
+    color: white;
+    font-size: 1.3em;
+}
+.nav-logout:hover {
+    color: white;
+}
+
 .nav-links {
-    width: 100%;
-    height: auto;
-    flex-flow: column wrap;
+    /*width: 100%;*/
+    /*height: auto;*/
+    /*flex-flow: column wrap;*/
+    height: 50%;
     list-style: none;
     padding: 0;
 }
 .nav-links a {
     padding: .7em 2em;
+
     margin: 0;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -173,8 +207,8 @@ nav {
 **********************************************/
 
 main {
-    margin-left: 10%;
-    justify-content: row;
+    height: 100vh;
+    overflow: auto;
 }
 .page-title {
     margin: 0;
@@ -202,12 +236,23 @@ main {
     overflow: hidden;
     box-shadow: 2px 1px 5px var(--shadow);
 }
+
+.carousel-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .slideshow-container img {
     width: 100%;
 }
 .mySlides {
     position: absolute;
     z-index: 1;
+}
+.mySlides img {
+    height: auto;
+    width: 100%;
 }
 .prev, .next {
     position: absolute;
@@ -258,14 +303,14 @@ main {
 
 
 .links-container {
-    width: 85%;
-    margin: 0px auto;
-    justify-content: flex-start;
-    flex-flow: row wrap;
+    /*width: 85%;*/
+    /*margin: 0px auto;*/
+    /*justify-content: flex-start;*/
+    /*flex-flow: row wrap;*/
 }
 .box-link {
-    width: 200px;
-    height: 200px;
+    /*width: 200px;*/
+    /*height: 200px;*/
     margin: 15px;
     box-shadow: 1px 1px 3px var(--shadow);
     background-color: var(--first);
@@ -277,13 +322,13 @@ main {
     transform: scale(1.1);
 }
 .box-link img {
-    width: auto;
+    width: 200px;
     height: 100%;
     z-index: -1;
     opacity: 0.5;
 }
 .box-link p {
-    margin: 150px 10px 10px 30px;
+    /*margin: 150px 10px 10px 30px;*/
     font-size: 1.4em;
     font-weight: 500;
     z-index: 1;
@@ -321,9 +366,9 @@ main {
 }
 
 .btn2 {
-    width: 260px;
+    /*width: 260px;*/
     height: 160px;
-    margin: 15px 15px;
+    /*margin: 15px 15px;*/
     border-radius: 30px;
     border-style: none;
     font-size: 1.2em;
@@ -398,7 +443,7 @@ main {
     font-size: 1vw;
 }
 #date {
-    font-size: 1.15svw;
+    font-size: 1.15vw;
     font-weight: 700;
     margin: .5vw 0 0;
     padding: 0;
@@ -406,31 +451,24 @@ main {
 
 #break-button {
     z-index: 2;
-    position: fixed;
-    bottom: 65px;
-    right: 80px;
-    transition: all .5s,
-                right .25s 0s,
-                height .25s 0s,
-                font-size .25s 0s,
-                width .5s .25s;
+    /*position: fixed;*/
+    /*top: 50px;*/
+    /*left: 50px;*/
+    /*transition: all 0.4s 0s ease;*/
 }
 #break-button.expanded {
     position: fixed;
     width: 83%;
-    height: 80%;
-    bottom: 50px;
-    right: 50px;
+    height: 83%;
+    top: 5vh;
+    left: 5vh;
+    transform: translate(5vh,5vh);
     font-size: 4vw;
-    transition: all .25s,
-                right .25s .25s,
-                height .25s .25s,
-                width .5s .5s,
-                font-size .5s .5s;
+    /*transition: all .5s ease;*/
 
 }
 #break-button.expanded:hover {
-    transform: scale(1.01);
+    /*transform: scale(1.01);*/
 }
 
 
@@ -463,7 +501,7 @@ main {
     background-color: var(--first);
     padding: .25em;
     border-radius: 1em;
-    color: var(--fontPrime);
+    color: white;
 }
 .spreadsheet {
     height: 98%;
@@ -500,7 +538,7 @@ main {
 }
 #newTab img {
     width: 100%;
-    height: auot;
+    height: auto;
 }
 
 
@@ -509,10 +547,8 @@ main {
 **********************************************/
 
 .store-btn {
-    position: fixed;
-    top: 20px;
-    right: -30px;
-    margin: 75px 75px -50px;
+    height: 55px;
+    /*margin: 75px 75px -50px;*/
     padding: 1vw 2vw;
     border-radius: 30px;
     border-style: none;
@@ -533,21 +569,22 @@ main {
 }
 
 .snacks-container {
-    margin: 50px auto;
-    justify-content: flex-start;
-    flex-flow: row wrap;
+
+
 }
+
+.snack-wrapper {
+    padding: 5px;
+}
+
 .snack {
-    padding: 20px;
-    height: auto;
-    width: auto;
-    margin: 20px -40px 20px 100px;
+    padding: 10px;
+
     border: 5px solid var(--first);
     border-radius: 10px;
     box-shadow: 3px 0 5px var(--shadow);
     transition: transform .2s;
-    display: flex;
-    flex-flow: column nowrap;
+
 }
 .snack:hover {
     transform: scale(1.05);
@@ -562,8 +599,8 @@ main {
     40%, 60%      { transform: rotate(12deg); }
 } */
 .snack-pic {
-    height: 200px;
-    width: 200px;
+    /*height: 200px;*/
+    /*width: 200px;*/
     overflow: hidden;
 }
 .snack img {
@@ -575,31 +612,29 @@ main {
     width: 200px;
     height: auto;
     position: relative;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: space-between;
+
 }
 .snack-info h3 {
     width: 100%;
-    margin: 20px 0 5px;
-    font-size: .8vw;
+
+    font-size: 1vw;
     font-weight: 500;
     text-transform: uppercase;
     color: var(--fontPrime);
 }
 .snack-info p {
+
     font-weight: 300;
     color: var(--fontPrime);
 }
 .snack-count {
-    margin: 15px 0;
-    font-size: .8vw;
+
+    font-size: 1.3vw;
     border: 2px solid var(--white);
     padding: 1px 5.5px;
     border-radius: 20px;
 }
 .snack-cost {
-    margin-left: 35%;
     font-size: 2vw;
 }
 .snack-in-cart .snack-cost {
@@ -625,17 +660,17 @@ main {
     flex-flow: column nowrap;
 }
 .snack-manage {
-    margin: 60px 75px -50px;
-    position: fixed;
-    width: 30%;
-    padding: 15px 40px;
+    /*margin: 60px 75px -50px;*/
+    /*position: fixed;*/
+    /*width: 30%;*/
+    /*padding: 15px 40px;*/
     background-color: var(--first);
     box-shadow: 5px 0 8px var(--shadow);
     border-radius: 16px;
 }
 #snack-cart {
-    display: flex;
-    flex-flow: column nowrap;
+    /*display: flex;*/
+    /*flex-flow: column nowrap;*/
     
 }
 .snack-in-cart {
@@ -647,7 +682,7 @@ main {
     margin-top: -5px;
 }
 #snack-cart-receipt {
-    margin: 20px;
+    /*margin: 20px;*/
     font-size: 24px;
     text-align: left;
 }
@@ -657,8 +692,8 @@ main {
     text-align: left;
 }
 .snack-manage button, .popup button {
-    width: 25%;
-    margin: 25px 5px;
+
+
     padding: 10px;
     border: 2px solid var(--white);
     background-color: var(--first);
@@ -680,9 +715,8 @@ main {
     flex-flow: row wrap;
 }
 .snack-manage h2 {
-    width: 100%;
-    margin: 30px 0;
-    font-size: 3em;
+
+    /*font-size: 3em;*/
     font-weight: 300;
     color: white;
 }
@@ -699,25 +733,22 @@ main {
     color: var(--fontPrime);
 }
 .snack-manage input {
-    float: right;
-    width: 58%;
-    margin: 5px;
-    padding: 3px;
+
     font-size: .9vw;
     font-weight: 500;
     text-align: right;
     border: none;
     border-radius: 3px;
     color: var(--second);
-    transition: all .2s;
+
     cursor: pointer;
 }
 .snack-manage input:hover {
-    width: 60%;
+
 }
 #add-img {
-    width: 25%;
-    margin: 25px 5px;
+    width: 100%;
+
     padding: 10px;
     border: 2px solid var(--fontPrime);
     background-color: var(--first);
@@ -830,13 +861,14 @@ main {
     color: var(--fontPrime);
 }
 .snack-info .btnPlusMinus{
-    position: absolute;
-    right: 70%;
+    /*position: absolute;*/
+    /*right: 70%;*/
     padding: 5px;
     background-color: var(--first);
     border-radius: 4px;
     border-style: none;
     transition: background-color .2s ease;
+    color: white;
 }
 .snack-info .btnPlusMinus:hover {
     background-color: var(--second);
@@ -1089,7 +1121,7 @@ main {
 #editInfo select {
     margin-right: 19px;
     padding: 5px 10px;
-    color: whiet;
+    color: white;
 }
 #aboutMe {
     width: 100%;
@@ -1179,13 +1211,13 @@ main {
     border: 5px solid var(--first);
     border-radius: 20px;
 }
-.table-box div {
-    width: 100%;
-    display: flex;
-    background-color: #dddddd;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
+/*.table-box div {*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    background-color: #dddddd;*/
+/*    border-top-left-radius: 20px;*/
+/*    border-top-right-radius: 20px;*/
+/*}*/
 .table-box h2{
     width: 80%;
     margin: 20px 20px 0px;

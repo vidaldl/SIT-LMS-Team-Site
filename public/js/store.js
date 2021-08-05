@@ -203,19 +203,24 @@ $(confirmAdd).click(async (event) => {
 function snackHTML(doc) {
     firebase.storage().ref().child(`images/${doc.data().image}`).getDownloadURL().then(function (url) {
         if (doc.data().count > 0 || editingStore) {
-            var html = `<section id class="snack col5 flex-container" onclick="selectSnack('${doc.id}', '${doc.data().price}', '${doc.data().count}')">
-                        <div class="snack-pic col10">
-                            <img src="${url}" alt="${doc.id}"/>
+            var html = `<div class="mb-3 col-md-4"><section id class="snack " onclick="selectSnack('${doc.id}', '${doc.data().price}', '${doc.data().count}')">
+                        <div class="snack-pic col-md-12">`;
+                            if (editingStore) {
+                                html += `<button type="button" class="btnPlusMinus" id="plus" onclick="changeCount(event, '${doc.id}')">+</button>
+                                        <button type="button" class="btnPlusMinus" id="minus" onclick="changeCount(event, '${doc.id}')">-</button>`
+                            }
+                          html +=  `<img class="img-fluid" src="${url}" alt="${doc.id}"/>
                         </div>
-                        <div class="snack-info col10">
+                        <div class="snack-info col-md-12 mt-2">
                             <h3 class="snack-name">${doc.id}</h3>
-                            <p class="snack-count" id="${(doc.id).replace(/ /g, '')}Count">${doc.data().count}</p>
-                            <p class="snack-cost">${doc.data().price}</p>`
-            if (editingStore) {
-                html += `<button type="button" class="btnPlusMinus" id="plus" onclick="changeCount(event, '${doc.id}')">+</button>
-                                <button type="button" class="btnPlusMinus" id="minus" onclick="changeCount(event, '${doc.id}')">-</button>`
-            }
-            html += `</div></section>`;
+                            <div class="row">
+                                <p class="snack-count ml-2" id="${(doc.id).replace(/ /g, '')}Count">${doc.data().count}</p>
+                                <p class="snack-cost ml-auto mr-3">${doc.data().price}</p>
+                            </div> </div></section></div>`;
+
+                            
+
+            // html += `</div></section></div>`;
             snackList.insertAdjacentHTML("beforeend", html);
         }
     }).catch(function (error) {
