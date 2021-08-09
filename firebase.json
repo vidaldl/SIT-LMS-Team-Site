@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "qa-portal",
+    "site": "sit-lms-team",
     "public": "public",
     "ignore": [
       "firebase.json",

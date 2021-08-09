@@ -23,11 +23,20 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/misc/byui_favicon.gif" />
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+
+
     <!-- CSS -->
+    <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -39,118 +48,155 @@
 ---------------------------------------------->
 
 <body>
-
+<div class="container-fluid">
+    <div class="row main-row">
     <!---------------------------------------------
     - 3. Navigation Bar
     ---------------------------------------------->
 
-    <nav class="col1">
-        <a href="home.html"><img id="logo" src="assets/logos/logo.png"></a>
-        <div class="nav-links flex-container">
-            <a href="schedule.html">Schedule</a>
-            <a href="store.html">Store</a>
-            <a class="current-page" href="profile.html">Profile</a>
-        </div>
-        <div id="nav-img-box">
-            <img id="nav-img" src="" alt="">
-        </div>
-    </nav>
+        <nav class="col-md-2" id="nav">
+            <div class="row nav-img">
+                <a href="home.html"><img class id="logo" src="assets/logos/logo.png"></a>
+            </div>
+
+            <div class="nav-links">
+                <div class="row">
+                    <a class="col-md-12" href="schedule.html">Schedule</a>
+                    <a class="col-md-12" href="store.html">Store</a>
+                    <!--                        <a class="col-md-12" href="profile.html">Profile</a>-->
+                </div>
+
+            </div>
+
+
+            <div class="row logout-row">
+                <div class="col-md-12 align-self-end mb-3">
+                    <div class="row text-center">
+                        <a class="mx-auto" href="profile.html">
+                            <img class="nav-profile mb-3" src="https://firebasestorage.googleapis.com/v0/b/techopsportal.appspot.com/o/profile%2Fdefault-image.png?alt=media&token=e5f71c77-b613-4a6e-baba-5206a4d71041" alt="">
+                        </a>
+                        <a id="signOut" href="" class="nav-logout col-md-12 ">Logout</a>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--            <div id="nav-img-box">-->
+            <!--                <img id="nav-img" src="" alt="">-->
+            <!--            </div>-->
+        </nav>
 
     <!---------------------------------------------
     - 4. Main
     ---------------------------------------------->
 
-    <main class="flex-container col9" id="profile-main">
-
-        <section class="flex-container profile-top-bar col10">
-            <h2 class="page-title-profile page-title">Profile</h2>
-            <div class="flex-container" id="clock-box">
-                <h2 id="signOutBtn">Sign Out</h2>
-                <!-- <i class="fas fa-history fa-3x" id="clock"></i> -->
-            </div>
-        </section>
-
-        <div id="main-profile">
-            <section class="col10 flex-container" id="profile-content">
-
-                <section class="profile-box-info col4" id="profile-info">
-                    <div class="col10">
-                        <i class="fas fa-pencil-alt fa-2x" id="editContact"></i>
-                        <h3 id="dbName"></h3>
-                        <p id="dbTitle"></p>
-                        <p id="dbTeam"></p>
-                        <p id="dbPhone"></p>
-                        <p id="dbEmail"></p>
-                    </div>
-                    <div class="col10" id="info">
-                        <h4>Info</h4>
-                        <p id="dbBirth"></p>
-                        <p id="dbMajor"></p>
-                        <p id="dbTrack"></p>
-                        <p id="dbGradDate"></p>
-                    </div>
-                    <div class="col10" id="aboutMe">
-                        <h4>About Me</h4>
-                        <p id="dbAboutMe"></p>
-                    </div>
-                </section>
-
-                <section class="profile-box flex-container col4" id="resources">
-                    <h3>Resources</h3>
-                    <div class="flex-container col10" id="links-box">
-                        <div class="flex-container profile-links col5">
-                            <a href="https://docs.google.com/document/d/1BHM-fW4LRBSb73uvN8jLHU9_v9Q91R5aHdBM0Srj1SA/edit?usp=sharing"
-                                target="_blank">Work Policies</a>
-                            <a target="_blank"
-                                href="https://byu-idaho.screenstepslive.com/admin/v2/sites/18626/manuals/70207/chapters/236350/articles">Screen
-                                Steps</a>
-                            <a href="http://byu-idaho.screenstepslive.com/s/18626/m/70207"
-                                target="_blank">Screen-steps/Training</a>
-                            <a target="_blank"
-                                href="http://www.byui.edu/executive-strategy-and-planning/institutional-research/outcomes-and-assessments/course-level">Outcomes
-                                and Assessments</a>
-                            <a id="styleGuide" target="black"
-                                href="https://byuitechops.github.io/portal/styleguide.html">Style Guide</a>
-                            <a class="hide" id="storeAdmin" target="_blank"
-                                href="https://byuitechops.github.io/oldPortal/inventory.html">Store Inventory</a>
-
-                        </div>
-                        <div class="flex-container profile-links col5">
-                            <a target="_blank" href="https://www.myworkday.com/byuhi/d/home.htmld">Workday</a>
-                            <a href="https://docs.google.com/document/d/1G_bc5LFy2V5TrO4riSLdPtsH2JvYIlvtGRxi1JYUjlk/edit?usp=sharing"
-                                target="_blank">Employee Handbook</a>
-                            <a target="_blank" href="https://canvas.instructure.com/styleguide">Canvas Style
-                                Guide</a>
-                            <a href="/oldPortal/timeAdmin.html" class="hide"> View/Edit Accumulated Time </a>
-                            <a class="hide" id="timeAdmin" href="admin.html">Admin Tools</a>
-                        </div>
-                    </div>
-                    <div class="flex-container flex-right col10 themes-box">
-                        <h3>Themes</h3>
-                        <section class="themes">
-                            <button class="btn1" id="light" data-theme="light"></button>
-                            <button class="btn1" id="dark-blue" data-theme="dark-blue"></button>
-                            <button class="btn1" id="dark" data-theme="dark"></button>
-                        </section>
-                    </div>
-                    <section class="flex-container col10" id="team-points">
-                        <h3>Team Points</h3>
-                        <div class="flex-container col10" id="select-points">
-                            <select name="" id="pointsOptions" class="profile-points">
-                                <option id="pointStart" value="start">- - -</option>
-                            </select>
-                            <button type="submit" id="submitPoints" class="btn-profile"
-                                onclick="submitTeamPoints()">Submit</button>
-                        </div>
-                    </section>
-                    <section class="flex-container col10" id="edit-team-points">
-                        <button type="submit" id="editPoints" class="btn-profile edit-profile-points hide"
-                            onclick="editTeamPoints()">Edit Points</button>
-                    </section>
-                </section>
-
+    <main class="main col-md-10" id="profile-main">
+        <div class="container-fluid">
+            <section class="row profile-top-bar col10">
+                <h2 class="page-title-profile page-title">Profile</h2>
+                <div class="flex-container" id="clock-box">
+                    <h2 id="signOutBtn">Sign Out</h2>
+                    <!-- <i class="fas fa-history fa-3x" id="clock"></i> -->
+                </div>
             </section>
+
+            <div class="row" id="main-profile">
+                <section class="col-md-12" id="profile-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <section class="profile-box-info col-md-6" id="profile-info">
+                                <div class="col10">
+                                    <i class="fas fa-pencil-alt fa-2x" id="editContact"></i>
+                                    <h3 id="dbName"></h3>
+                                    <p id="dbTitle"></p>
+                                    <p id="dbTeam"></p>
+                                    <p id="dbPhone"></p>
+                                    <p id="dbEmail"></p>
+                                </div>
+                                <div class="col10" id="info">
+                                    <h4>Info</h4>
+                                    <p id="dbBirth"></p>
+                                    <p id="dbMajor"></p>
+                                    <p id="dbTrack"></p>
+                                    <p id="dbGradDate"></p>
+                                </div>
+                                <div class="col10" id="aboutMe">
+                                    <h4>About Me</h4>
+                                    <p id="dbAboutMe"></p>
+                                </div>
+                            </section>
+
+                            <section class="profile-box flex-container col-md-5 offset-md-1 " id="resources">
+                                <h3>Resources</h3>
+                                <div class="row" id="links-box">
+                                    <div class="profile-links col-md-6">
+                                        <div class="row">
+                                            <a class="col-md-7 mt-3 mx-auto" href="https://docs.google.com/document/d/1BHM-fW4LRBSb73uvN8jLHU9_v9Q91R5aHdBM0Srj1SA/edit?usp=sharing"
+                                               target="_blank">Work Policies</a>
+                                            <a class="col-md-7 mt-3 mx-auto" target="_blank"
+                                               href="https://byu-idaho.screenstepslive.com/admin/v2/sites/18626/manuals/70207/chapters/236350/articles">Screen
+                                                Steps</a>
+                                            <a class="col-md-7 mt-3 mx-auto" href="http://byu-idaho.screenstepslive.com/s/18626/m/70207"
+                                               target="_blank">Screen-steps/Training</a>
+                                            <a class="col-md-7 mt-3 mx-auto" target="_blank"
+                                               href="http://www.byui.edu/executive-strategy-and-planning/institutional-research/outcomes-and-assessments/course-level">Outcomes
+                                                and Assessments</a>
+                                            <a class="col-md-7 mt-3 mx-auto" id="styleGuide" target="black"
+                                               href="https://byuitechops.github.io/portal/styleguide.html">Style Guide</a>
+                                            <a class="col-md-7 mt-3 mx-auto" class="hide" id="storeAdmin" target="_blank"
+                                               href="https://byuitechops.github.io/oldPortal/inventory.html">Store Inventory</a>
+                                        </div>
+
+                                    </div>
+                                    <div class="profile-links col-md-6">
+                                        <div class="row">
+                                            <a class="col-md-7 mt-3 mx-auto" target="_blank" href="https://www.myworkday.com/byuhi/d/home.htmld">Workday</a>
+                                            <a class="col-md-7 mt-3 mx-auto" href="https://docs.google.com/document/d/1G_bc5LFy2V5TrO4riSLdPtsH2JvYIlvtGRxi1JYUjlk/edit?usp=sharing"
+                                               target="_blank">Employee Handbook</a>
+                                            <a class="col-md-7 mt-3 mx-auto" target="_blank" href="https://canvas.instructure.com/styleguide">Canvas Style
+                                                Guide</a>
+                                            <a class="col-md-7 mt-3 mx-auto" href="/oldPortal/timeAdmin.html" class="hide"> View/Edit Accumulated Time </a>
+                                            <a class="col-md-7 mt-3 mx-auto" class="hide" id="timeAdmin" href="admin.html">Admin Tools</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row themes-box">
+                                    <h3>Themes</h3>
+                                    <section class="themes">
+                                        <button class="btn1" id="light" data-theme="light"></button>
+                                        <button class="btn1" id="dark-blue" data-theme="dark-blue"></button>
+                                        <button class="btn1" id="dark" data-theme="dark"></button>
+                                    </section>
+                                </div>
+                                <section class="row" id="team-points">
+                                    <div class="col-md-8 mx-auto">
+                                        <div class="container  ">
+                                            <h3>Team Points</h3>
+                                            <div id="select-points">
+                                                <select name="" id="pointsOptions" class="profile-points">
+                                                    <option id="pointStart" value="start">- - -</option>
+                                                </select>
+                                                <button type="submit" id="submitPoints" class="btn-profile"
+                                                        onclick="submitTeamPoints()">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </section>
+                                <section class="flex-container col10" id="edit-team-points">
+                                    <button type="submit" id="editPoints" class="btn-profile edit-profile-points hide"
+                                            onclick="editTeamPoints()">Edit Points</button>
+                                </section>
+                            </section>
+                        </div>
+                    </div>
+
+
+                </section>
+            </div>
         </div>
+
 
 
         <section class="table-box hide" id="admin-tool-points">
@@ -261,6 +307,8 @@
         </div>
     </div>
 
+    </div>
+</div>
 </body>
 
 <!---------------------------------------------

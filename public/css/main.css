@@ -56,6 +56,10 @@
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+.white {
+    color: white;
+}
+
 
 /***********************************************************
 * 3. General Style Rules
@@ -501,7 +505,7 @@ main {
     background-color: var(--first);
     padding: .25em;
     border-radius: 1em;
-    color: white;
+    color: whiteprofile-main;
 }
 .spreadsheet {
     height: 98%;
@@ -896,7 +900,7 @@ main {
 **********************************************/
 
 #profile-main {
-    flex-flow: row wrap;
+    /*flex-flow: row wrap;*/
 }
 .profile-top-bar {
     display: flex;
@@ -942,9 +946,6 @@ main {
     color: var(--fontPrime);
 }
 #profile-info, #resources {
-    margin: 3%;
-    padding: 40px;
-    flex-flow: row wrap;
     box-shadow: 1px 1px 3px var(--shadow);
     border: 10px solid var(--first);
     border-radius: 20px;
@@ -997,12 +998,11 @@ main {
     justify-content: center;
 }
 .profile-links {
-    width: 50%;
-    flex-flow: column wrap;
+
 }
 .profile-links a {
-    width: 80%;
-    margin: 5px auto;
+
+
     padding: 5px;
     background-color: var(--first);
     color: var(--white);
@@ -1029,8 +1029,7 @@ main {
     height: 40px;
 }
 #team-points h3 {
-    width: 25%;
-    margin: 5px 0;
+
 }
 #select-points option{
     color: var(--white);
@@ -1202,24 +1201,24 @@ main {
 **********************************************/
 
 .table-box {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0;
+    /*width: 90%;*/
+    /*max-width: 1000px;*/
+    /*margin: 30px auto;*/
+    /*padding: 0;*/
     color: black;
     background-color: #f7f7f7;
     border: 5px solid var(--first);
     border-radius: 20px;
 }
-/*.table-box div {*/
-/*    width: 100%;*/
-/*    display: flex;*/
-/*    background-color: #dddddd;*/
-/*    border-top-left-radius: 20px;*/
-/*    border-top-right-radius: 20px;*/
-/*}*/
+.table-headings {
+
+
+    background-color: #dddddd;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
 .table-box h2{
-    width: 80%;
+    /*width: 80%;*/
     margin: 20px 20px 0px;
     padding: 10px 20px;
     color: black;
@@ -1264,6 +1263,7 @@ main {
 }
 .table-generate {
     padding: 20px 40px;
+    border-collapse: unset!important;
 }
 .table-generate th {
     padding: 10px 0px;

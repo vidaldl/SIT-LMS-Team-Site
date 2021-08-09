@@ -55,6 +55,35 @@ function storeChange(id) {
     }
 }
 
+function closeAllModals() {
+
+    // get modals
+    const modals = document.getElementsByClassName('modal');
+
+    // on every modal change state like in hidden modal
+    for(let i=0; i<modals.length; i++) {
+        modals[i].classList.remove('show');
+        modals[i].setAttribute('aria-hidden', 'true');
+        modals[i].setAttribute('style', 'display: none');
+    }
+
+    // get modal backdrops
+    const modalsBackdrops = document.getElementsByClassName('modal-backdrop');
+
+    // remove every modal backdrop
+    for(let i=0; i<modalsBackdrops.length; i++) {
+        document.body.removeChild(modalsBackdrops[i]);
+    }
+}
+
+function deleteUser(id){
+
+    users.doc(id).delete();
+    clearTable();
+    generateList();
+    closeAllModals();
+}
+
 function generateList(all) {
     // console.log('generateList called');
     users.orderBy(orderBy, "asc").get()
@@ -68,16 +97,10 @@ function generateList(all) {
                         var interpolate = "grayYes"
                     }
 
-                    let row = `<tr class='generated ${interpolate}' id=${doc.id}>
+                    let row = `<tr class='generated  p-2 ${interpolate}' id=${doc.id}>
                                     <td class="usernum admin-count">${count}</td>
                                     <td class="username">${doc.data().nameDisplay}</td>
-                                    <td class="userteam">
-                                        <select onchange="teamChange('${doc.id}')" class="table-select teamSelect">
-                                            <option>default</option>
-                                            <option>Team 1</option>
-                                            <option>Team 2</option>
-                                        </select>
-                                    </td>
+                                    
                                     <td class="usertitle">
                                         <select onchange="titleChange('${doc.id}')" class = "table-select roleSelect">
                                             <option>Student Lead</option>
@@ -97,6 +120,33 @@ function generateList(all) {
                     } else {
                         row += `<td class="userstore"><input onchange="storeChange('${doc.id}')" class="manager" type="checkbox"/></td>`
                     }
+
+                    // Adds Delete button and Modal
+
+                    row += `<td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete${doc.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                            <div class="modal fade" id="delete${doc.id}" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h5>Are you sure you want to delete ${doc.data().nameDisplay}'s user?</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-warning white" onclick="deleteUser('${doc.id}')">Confirm <i class="fas fa-check"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
                     generate.insertAdjacentHTML('beforeend', row);
 
                     count++;
