@@ -335,3 +335,72 @@ function closeAllModals() {
         document.body.removeChild(modalsBackdrops[i]);
     }
 }
+
+
+// Reminder
+const notificationOnButton = document.getElementById('notificationOnButton');
+const notificationOffButton = document.getElementById('notificationOffButton');
+
+var notify = false;
+// request permission on page load
+document.addEventListener('DOMContentLoaded', function() {
+
+
+    if (!Notification) {
+        alert('Desktop notifications not available in your browser. Try Chromium.');
+        return;
+    }
+
+    if (Notification.permission !== 'granted')
+        Notification.requestPermission();
+});
+
+
+function notificationTimer(time) {
+    setInterval(() => {
+
+        if(time <= 8) {
+            var notification = new Notification('Hourly Report Reminder', {
+                icon: 'assets/misc/clockWhite.png',
+                body: 'Hey there! Remember to fill up the Hourly Update form.',
+                requireInteraction: true,
+            });
+            notification.onclick = function() {
+                window.open('https://docs.google.com/forms/d/e/1FAIpQLSeeuUJwLyqxQokMFLHxgBAWCOOc_0485mTcoFk92LbMr-MkKA/viewform');
+            };
+            notification.onshow = function(){
+                alert('Hey there! Remember to fill up the Hourly Update form.');
+            };
+
+            console.log(time);
+            if (notify === true) {
+                time++;
+            } else {
+                time = 15;
+            }
+        }
+
+    }, (15 * 60000));
+    // }, 10000);
+
+}
+function notifyMe(isTrue) {
+    var time = 0;
+    if (isTrue === true) {
+        notify = true;
+        notificationOnButton.classList.add('hide');
+        notificationOffButton.classList.remove('hide');
+        if (Notification.permission !== 'granted')
+            Notification.requestPermission();
+        else {
+            notificationTimer(time);
+        }
+    } else {
+        notify = false;
+        notificationOffButton.classList.add('hide');
+        notificationOnButton.classList.remove('hide');
+
+    }
+
+
+}
