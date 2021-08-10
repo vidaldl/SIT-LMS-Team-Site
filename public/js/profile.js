@@ -183,8 +183,8 @@ fileUpload.addEventListener('change', function (evt) {
     $(buttonConfirm).click(function() {
         // Get the canvas with image data from Cropper.js
         var canvas = cropper.getCroppedCanvas({
-            width: 1080,
-            height: 1080
+            width: 600,
+            height: 600
         });
         // Turn the canvas into a Blob (file object without a name)
         canvas.toBlob(function(blob) {
@@ -341,9 +341,11 @@ function loadPage() {
             db.collection("users").doc(userId)
                 .onSnapshot((querrySnapshot) => {
                     const myData = querrySnapshot.data();
+                    if(myData.info.photo !== "default-image.png") {
+                        document.getElementById("fullProfilePic").src = myData.info.photo;
+                        document.getElementById("editProfilePic").src = myData.info.photo;
+                    }
 
-                    document.getElementById("fullProfilePic").src = myData.info.photo;
-                    document.getElementById("editProfilePic").src = myData.info.photo;
                     document.getElementById("dbName").innerHTML = myData.nameDisplay;
                     document.getElementById("dbTitle").innerHTML = "Title: " + myData.title;
                     document.getElementById("dbTeam").innerHTML = "Team: " + myData.team;

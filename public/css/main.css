@@ -1047,7 +1047,7 @@ main {
     color: var(--white);
 }
 .edit-profile-points{
-    width: 15%;
+    /*width: 15%;*/
     height: 30px;
     margin: 5px;
     color: var(--white);
