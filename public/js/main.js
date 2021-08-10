@@ -1,6 +1,6 @@
 /**********************************************
- * MAIN.JS | Quality Assurance Javascript File 
- * 
+ * MAIN.JS | Quality Assurance Javascript File
+ *
  *********************************************/
 'use strict';
 // Initialize Firebase
@@ -71,7 +71,9 @@ function getData() {
             data = querySnapshot.docs[0].data();
             userId = querySnapshot.docs[0].id;
             preferance = data.viewMode;
+            document.querySelector('#profilePic').src = data.info.photo;
         })
+
 }
 
 function editDate(date) {
@@ -137,10 +139,10 @@ function changeSlide(n) {
  *  This Section is for the theme changer. Instead of have multiple css files
  * and switch the files (which is complicated and just why) we are using CSS
  * variables and JS functions to change it.
- * 
+ *
  *********************************************************************/
 
-const navbarImage = document.getElementById("nav-img");
+// const navbarImage = document.getElementById("nav-img");
 
 // This const sets a var for all the buttons to change themes
 const dataThemeButtons = document.querySelectorAll('[data-theme]');
@@ -166,7 +168,7 @@ function changeTheme(preferance) {
         preferance = "dark";
         changeViewMode(preferance);
     }
-  
+
     db.collection("users").where("name", "==", userName)
         .onSnapshot((querySnapshot) => {
             preferance = querySnapshot.docs[0].data().viewMode;
@@ -182,7 +184,7 @@ function changeTheme(preferance) {
                         'shadow': 'var(--gray)',
                         'fontPrime': '#000000'
                     });
-                    navbarImage.src="";
+                    // navbarImage.src="";
                     break;
                 case 'dark-blue':
                     setTheme({
@@ -195,7 +197,7 @@ function changeTheme(preferance) {
                         'shadow': 'none',
                         'fontPrime': '#ffffff'
                     });
-                    navbarImage.src="";
+                    // navbarImage.src="";
                     break;
                 case 'dark':
                     setTheme({
@@ -208,7 +210,7 @@ function changeTheme(preferance) {
                         'shadow': 'none',
                         'fontPrime': '#ffffff'
                     });
-                    navbarImage.src="";
+                    // navbarImage.src="";
                     break;
                 case 'falllight':
                     setTheme({
@@ -239,7 +241,7 @@ function changeTheme(preferance) {
                 case 'christmaslight':
                     setTheme({
                         'first': '#054d00',
-                        'second': '#054d00', 
+                        'second': '#054d00',
                         'third': '#054d00',
                         'background': '#eeffed',
                         'backgroundSecondary': '#eeffed',
@@ -252,7 +254,7 @@ function changeTheme(preferance) {
                 case 'christmasdark':
                     setTheme({
                         'first': '#9c0000',
-                        'second': '#9c0000', 
+                        'second': '#9c0000',
                         'third': '#9c0000',
                         'background': '#032e00',
                         'backgroundSecondary': '#032e00',
@@ -283,7 +285,7 @@ function changeViewMode(newTheme) {
 
 // setTheme and setValue are interconnected. setTheme goes through the JSON
 // we created in the main function and passes each one to setValue. Then setValue
-// will replace the CSS var with a new value. Pretty nifty and got help thanks to 
+// will replace the CSS var with a new value. Pretty nifty and got help thanks to
 // Ashley and the internet. AN AVACADO, THANKS!
 
 function setTheme(options) {
@@ -308,3 +310,25 @@ function setValue(property, value) {
     }
 }
 
+//CLOSE ALL MODALS
+
+function closeAllModals() {
+
+    // get modals
+    const modals = document.getElementsByClassName('modal');
+
+    // on every modal change state like in hidden modal
+    for(let i=0; i<modals.length; i++) {
+        modals[i].classList.remove('show');
+        modals[i].setAttribute('aria-hidden', 'true');
+        modals[i].setAttribute('style', 'display: none');
+    }
+
+    // get modal backdrops
+    const modalsBackdrops = document.getElementsByClassName('modal-backdrop');
+
+    // remove every modal backdrop
+    for(let i=0; i<modalsBackdrops.length; i++) {
+        document.body.removeChild(modalsBackdrops[i]);
+    }
+}

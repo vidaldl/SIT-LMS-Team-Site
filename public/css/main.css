@@ -950,6 +950,18 @@ main {
     border: 10px solid var(--first);
     border-radius: 20px;
 }
+
+#fullProfilePic {
+    width: 300px;
+    border: 5px solid #0076c6;
+    border-radius: 50%;
+}
+
+#editProfilePic {
+    width: 300px;
+    border: 5px solid #0076c6;
+    border-radius: 50%;
+}
 #editContact {
     float: right;
     padding: 10px;

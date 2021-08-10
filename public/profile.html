@@ -29,12 +29,14 @@
 
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
 
 
     <!-- CSS -->
     <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/vendor/cropper/cropper.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="css/main.css" />
@@ -73,7 +75,7 @@
                 <div class="col-md-12 align-self-end mb-3">
                     <div class="row text-center">
                         <a class="mx-auto" href="profile.html">
-                            <img class="nav-profile mb-3" src="https://firebasestorage.googleapis.com/v0/b/techopsportal.appspot.com/o/profile%2Fdefault-image.png?alt=media&token=e5f71c77-b613-4a6e-baba-5206a4d71041" alt="">
+                            <img class="nav-profile mb-3" id="profilePic" src="https://firebasestorage.googleapis.com/v0/b/techopsportal.appspot.com/o/profile%2Fdefault-image.png?alt=media&token=e5f71c77-b613-4a6e-baba-5206a4d71041" alt="">
                         </a>
                         <a id="signOut" href="" class="nav-logout col-md-12 ">Logout</a>
                     </div>
@@ -104,7 +106,57 @@
                 <section class="col-md-12" id="profile-content">
                     <div class="container-fluid">
                         <div class="row">
-                            <section class="profile-box-info col-md-6" id="profile-info">
+                            <section class="profile-box-info col-md-6 p-5" id="profile-info">
+                                <div class="row mt-3 mb-1">
+                                    <div class="container">
+                                        <img class="img-fluid" id="fullProfilePic"
+                                             src="https://firebasestorage.googleapis.com/v0/b/techopsportal.appspot.com/o/profile%2Fdefault-image.png?alt=media&token=e5f71c77-b613-4a6e-baba-5206a4d71041"
+                                             alt="Profile Picture">
+                                    </div>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="container ">
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#profileModal">Photo &nbsp;<i class="fas fa-pen"></i></button>
+                                        <!-- Edit Picture Modal -->
+                                        <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="Profile Picture Modal" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Profile Picture</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <img class="img-fluid mx-auto" id="editProfilePic"
+                                                                     src="https://firebasestorage.googleapis.com/v0/b/techopsportal.appspot.com/o/profile%2Fdefault-image.png?alt=media&token=e5f71c77-b613-4a6e-baba-5206a4d71041"
+                                                                     alt="Profile Picture">
+
+                                                                <!--EDITOR-->
+                                                                <div class="editor d-none" style="height:450px; width: 450px; background-color: #000;">
+                                                                </div>
+                                                                <button class="buttonConfirm btn btn-primary float-right mt-2 d-none">Confirmar</button>
+                                                            </div>
+                                                            <div class="row mt-3">
+                                                                <div class="mx-auto">
+                                                                    <input class="form-control-file" id="profileUpload" value="Upload Image" type="file">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer hide">
+                                                        <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+                                                        <button type="button" class="btn btn-primary ">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col10">
                                     <i class="fas fa-pencil-alt fa-2x" id="editContact"></i>
                                     <h3 id="dbName"></h3>
@@ -309,6 +361,8 @@
 
     </div>
 </div>
+
+
 </body>
 
 <!---------------------------------------------
@@ -316,7 +370,13 @@
 ---------------------------------------------->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="assets/vendor/cropper/cropper.js"></script>
 <script src="js/main.js"></script>
 <script src="js/profile.js"></script>
+
+<script>
+
+
+</script>
 
 </html>

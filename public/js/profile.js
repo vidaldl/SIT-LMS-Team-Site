@@ -149,6 +149,94 @@ $(okBtn).click(() => {
 /***********************************************************
  * C. Profile
  ************************************************************/
+
+
+//PROFILE IMAGE UPLOAD
+
+const fileUpload = document.getElementById('profileUpload');
+const ref = firebase.storage().ref('profile/');
+
+fileUpload.addEventListener('change', function (evt) {
+    let firstFile = evt.target.files[0];
+    /***
+     * CropperJS init
+     */
+    var editor = $('.editor');
+    var imgThumbnail = $('#editProfilePic');
+    $(imgThumbnail).addClass('d-none');
+    $(editor).removeClass('d-none');
+    $(editor).addClass('d-block');
+
+
+    // Create an image node for Cropper.js
+    var image = new Image();
+    image.src = URL.createObjectURL(firstFile);
+    // editor.appendChild(image);
+    $(image).appendTo(editor)
+    // Create Cropper.js
+    var cropper = new Cropper(image, { aspectRatio: 1 });
+
+    var buttonConfirm = $('.buttonConfirm');
+    $(buttonConfirm).removeClass('d-none');
+    $(buttonConfirm).addClass('d-block');
+
+    $(buttonConfirm).click(function() {
+        // Get the canvas with image data from Cropper.js
+        var canvas = cropper.getCroppedCanvas({
+            width: 1080,
+            height: 1080
+        });
+        // Turn the canvas into a Blob (file object without a name)
+        canvas.toBlob(function(blob) {
+            // Create a new Dropzone file thumbnail
+            /********
+             *FIRESTORE Storage functionality, Save in Database as well.
+             */
+                // const file = document.querySelector('#photo').files[0]
+                // let firstFile = evt.target.files[0];
+            const name = userName + '-profile' ;
+            // const metadata = {
+            //     contentType: file.type
+            // };
+            //Delete Old
+            var deleteOld = ref.child(name).delete();
+            deleteOld.catch(console.error);
+            //Upload New
+            const task = ref.child(name).put(blob);
+            task
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then((url) => {
+                    console.log(url);
+
+                    document.querySelector('#editProfilePic').src = url;
+                    db.collection("users").doc(userId).update({
+                        "info.photo": url,
+                    });
+                })
+                .catch(console.error);
+        }, 'image/png');
+        // Remove the editor from the view
+        $(buttonConfirm).removeClass('d-block');
+        $(buttonConfirm).addClass('d-none');
+
+        $(image).addClass('d-none');
+        $(editor).removeClass('d-block');
+        $(editor).addClass('d-none');
+        $(imgThumbnail).addClass('d-block');
+        $(imgThumbnail).removeClass('d-none');
+
+        setTimeout(function(){
+
+            cropper.destroy();
+
+        }, 3000);
+
+
+    });
+
+});
+
+
 //allows the user to edit his/her information
 editBtn.addEventListener("click", () => {
     editDiv.classList.remove("hide");
@@ -253,6 +341,9 @@ function loadPage() {
             db.collection("users").doc(userId)
                 .onSnapshot((querrySnapshot) => {
                     const myData = querrySnapshot.data();
+
+                    document.getElementById("fullProfilePic").src = myData.info.photo;
+                    document.getElementById("editProfilePic").src = myData.info.photo;
                     document.getElementById("dbName").innerHTML = myData.nameDisplay;
                     document.getElementById("dbTitle").innerHTML = "Title: " + myData.title;
                     document.getElementById("dbTeam").innerHTML = "Team: " + myData.team;
