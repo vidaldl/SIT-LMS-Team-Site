@@ -341,7 +341,7 @@ function loadPage() {
             db.collection("users").doc(userId)
                 .onSnapshot((querrySnapshot) => {
                     const myData = querrySnapshot.data();
-                    if(myData.info.photo !== "default-image.png") {
+                    if(myData.info.photo !== "default-image.png" || myData.info.photo.includes('https:')) {
                         document.getElementById("fullProfilePic").src = myData.info.photo;
                         document.getElementById("editProfilePic").src = myData.info.photo;
                     }

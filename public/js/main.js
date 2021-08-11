@@ -71,7 +71,7 @@ function getData() {
             data = querySnapshot.docs[0].data();
             userId = querySnapshot.docs[0].id;
             preferance = data.viewMode;
-            if(data.info.photo !== "default-image.png") {
+            if(myData.info.photo !== "default-image.png" || myData.info.photo.includes('https:')) {
                 document.querySelector('#profilePic').src = data.info.photo;
             }
 
