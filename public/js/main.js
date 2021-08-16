@@ -3,6 +3,8 @@
  *
  *********************************************/
 'use strict';
+
+$('.alert').hide();
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyA_I75-CU5_GlNP1QSKvvH8nbYVkaAUgNA",
@@ -33,9 +35,11 @@ var user = firebase.auth().currentUser;
 auth.onAuthStateChanged((firebaseUser) => {
     //checks if the user is already logged in to the system
     if (firebaseUser) {
+
         userName = firebaseUser.displayName;
         changeTheme();
         getData();
+
         if (window.location.href.includes("index.html") || window.location.href.includes("signup.html") || window.location.pathname == "/") {
         // window.location.replace("home.html");
         }
@@ -66,16 +70,26 @@ document.getElementById("signOut").addEventListener("click", () => {
 
 
 function getData() {
+    db.collection("cms").doc("home").onSnapshot((querrySnapshot) => {
+        var pageTitle = querrySnapshot.data().pageTitle;
+        $('#pageTitleDB').html(pageTitle);
+    });
+
     db.collection("users").where("name", "==", userName)
         .onSnapshot((querySnapshot) => {
             data = querySnapshot.docs[0].data();
             userId = querySnapshot.docs[0].id;
             preferance = data.viewMode;
-            if(myData.info.photo !== "default-image.png" || myData.info.photo.includes('https:')) {
+            if(data.info.photo === "default-image.png" || data.info.photo.includes('.jpg')) {
+
+            } else {
                 document.querySelector('#profilePic').src = data.info.photo;
             }
 
         })
+    setTimeout(function() {
+        $('#overlay').fadeOut("slow");
+    }, 1000);
 
 }
 
@@ -403,4 +417,19 @@ function notifyMe(isTrue) {
     }
 
 
+}
+
+
+// NEW SLIDE SHOW CODE
+
+
+// Update Alert
+function updateAlert(message) {
+
+    let alerta = $('.alert');
+    alerta.html(message);
+    alerta.fadeIn();
+    setTimeout(function() {
+        alerta.fadeOut();
+    },1000)
 }

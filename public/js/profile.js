@@ -341,7 +341,11 @@ function loadPage() {
             db.collection("users").doc(userId)
                 .onSnapshot((querrySnapshot) => {
                     const myData = querrySnapshot.data();
-                    if(myData.info.photo !== "default-image.png" || myData.info.photo.includes('https:')) {
+
+                    if(data.info.photo === "default-image.png" || data.info.photo.includes('.jpg')) {
+
+
+                    } else {
                         document.getElementById("fullProfilePic").src = myData.info.photo;
                         document.getElementById("editProfilePic").src = myData.info.photo;
                     }

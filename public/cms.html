@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/misc/byui_favicon.gif">
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/vendor/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>Home | Quality Assurance Portal</title>
+</head>
+
+<body>
+<div id="overlay">
+    <div class='uil-ring-css' style='transform:scale(0.79);'>
+        <div></div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row main-row">
+        <!---------------------------------------------
+        - 3. Navigation Bar
+        ---------------------------------------------->
+
+        <nav class="col-md-2" id="nav">
+            <div class="row nav-img">
+                <a href="home.html"><img class id="logo" src="assets/logos/logo.png"></a>
+            </div>
+
+            <div class="nav-links">
+                <div class="row">
+                    <a class="col-md-12" href="schedule.html">Schedule</a>
+                    <a class="col-md-12" href="store.html">Store</a>
+                    <!--                        <a class="col-md-12" href="profile.html">Profile</a>-->
+                </div>
+
+            </div>
+
+
+            <div class="row logout-row">
+                <div class="col-md-12 align-self-end mb-3">
+                    <div class="row text-center">
+                        <a class="mx-auto" href="profile.html">
+                            <img class="nav-profile mb-3" id="profilePic" src="https://firebasestorage.googleapis.com/v0/b/techopsportal.appspot.com/o/profile%2Fdefault-image.png?alt=media&token=e5f71c77-b613-4a6e-baba-5206a4d71041" alt="">
+                        </a>
+                        <a id="signOut" href="" class="nav-logout col-md-12 ">Logout</a>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--            <div id="nav-img-box">-->
+            <!--                <img id="nav-img" src="" alt="">-->
+            <!--            </div>-->
+        </nav>
+
+
+        <main class="main col-md-10">
+            <div class="container-fluid">
+                <div class="alert alert-success row"  style="z-index: 50; position: fixed;">
+                    <span></span>
+                </div>
+                <div class="row">
+                    <h1 class="page-title">Manage Content</h1>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#homeTab" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#scheduleTab" role="tab" aria-controls="profile" aria-selected="false">Schedule</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content " id="myTabContent">
+                            <!--------------------------------
+                                       HOME TAB
+                            --------------------------------->
+                                <div class="tab-pane fade show active" id="homeTab" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="container p-5">
+                                        <!-- Page Title -->
+                                        <div class="row">
+                                            <h5>Page Title</h5>
+                                            <div class="container">
+                                                <div class="form-group">
+                                                    <label for="pageTitleDB"></label>
+                                                    <input type="text" id="pageTitleDB">
+                                                    <button class="btn btn-primary" id="updatePageTitle" data-toggle="modal" data-target="#exampleModal">Update <i class="fas fa-pen"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!--
+                                            SLIDE SHOW
+                                        -->
+
+                                        <div class="row">
+                                            <h5>Slide Show</h5>
+                                            <div class="container mb-2">
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#slideShowModal">Edit Images <i class="fas fa-images"></i></button>
+                                            </div>
+                                            <section class="col-md-12" id="slideShowDB">
+
+                                            </section>
+                                            <!-- EDIT PHOTO MODAL -->
+                                            <div class="modal fade" id="slideShowModal" tabindex="-1" role="dialog" aria-labelledby="Profile Picture Modal" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Edit Profile Picture</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <img class="img-fluid mx-auto" id="editProfilePic"
+                                                                         src="https://firebasestorage.googleapis.com/v0/b/techopsportal.appspot.com/o/profile%2Fdefault-image.png?alt=media&token=e5f71c77-b613-4a6e-baba-5206a4d71041"
+                                                                         alt="Profile Picture">
+
+                                                                    <!--EDITOR-->
+                                                                    <div class="editor d-none" style="height:450px; width: 450px; background-color: #000;">
+                                                                    </div>
+                                                                    <button class="buttonConfirm btn btn-primary float-right mt-2 d-none">Confirm</button>
+                                                                </div>
+                                                                <div class="row mt-3">
+                                                                    <div class="mx-auto">
+                                                                        <input class="form-control-file" id="profileUpload" value="Upload Image" type="file">
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer hide">
+                                                            <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+                                                            <button type="button" class="btn btn-primary ">Upload</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <!-- Links -->
+                                        <div class="row">
+                                            <h5>Links</h5>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <section class="container-fluid col-md-12">
+
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="box-link container" id="canvas">
+                                                                    <a href="https://byui.instructure.com/login/canvas" target="_blank" >
+                                                                        <p>Canvas</p>
+                                                                        <img class="img-fluid" src="assets/icons/canvas.png" alt="Canvas Icon"/>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <div class="box-link container" id="googledrive">
+                                                                    <a href="https://drive.google.com/drive/team-drives" target="_blank" >
+                                                                        <p>Google Drive</p>
+                                                                        <img class="img-fluid" src="assets/icons/drive.png" alt="Google Drive Icon"/>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="box-link container" id="workday">
+                                                                    <a href="https://www.myworkday.com/byuhi/d/home.htmld" target="_blank" >
+                                                                        <p>Workday</p>
+                                                                        <img class="img-fluid" src="assets/icons/workday.png" alt="Google Chat Icon"/>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="box-link container" id="sit-training">
+                                                                    <a href="https://byui.instructure.com/courses/86086" target="_blank" >
+                                                                        <p>SIT - Training</p>
+                                                                        <img class="img-fluid" src="assets/icons/trainingIcon.png" alt="SIT Training Icon"/>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="box-link container" id="accessibility">
+                                                                    <a href="https://byui-accessibility-redemption.web.app/" target="_blank" >
+                                                                        <p>Accessibility</p>
+                                                                        <img class="img-fluid" src="assets/icons/accessibility.png" alt="Accessibility Icon"/>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="box-link container" id="hourlyUpdate">
+                                                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeuUJwLyqxQokMFLHxgBAWCOOc_0485mTcoFk92LbMr-MkKA/viewform" target="_blank" >
+                                                                        <p>Hourly Update</p>
+                                                                        <img class="img-fluid" src="assets/icons/hourlyUpdate.png" alt="Accessibility Icon"/>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="box-link container" id="office365">
+                                                                    <a href="https://outlook.office365.com/owa/?realm=byui.edu&exsvurl=1&ll-cc=1033&modurl=0" target="_blank" >
+                                                                        <p>Office 365</p>
+                                                                        <img class="img-fluid" src="assets/icons/office365.png" alt="Office 365 Icon"/>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <!--                <div class="box-link" id="katana">-->
+                                                            <!--                    <a href="http://10.5.188.187:8000/home" target="_blank" >-->
+                                                            <!--                        <p>Katana</p>-->
+                                                            <!--                        <img class="img-fluid" src="assets/icons/katana.png" alt="Katana Icon"/>-->
+                                                            <!--                    </a>-->
+                                                            <!--                </div>-->
+
+                                                            <!--                <div class="box-link" id="equella">-->
+                                                            <!--                    <a href="https://content.byui.edu/access/home.do" target="_blank" >-->
+                                                            <!--                        <p>Equella</p>-->
+                                                            <!--                        <img class="img-fluid" src="assets/icons/equella.png" alt="Equella Icon"/>-->
+                                                            <!--                    </a>-->
+                                                            <!--                </div>-->
+
+                                                            <div class="col-md-4">
+                                                                <div class="box-link container" id="trello">
+                                                                    <a href="https://trello.com/b/4BOizjy8/sit-lms-team" target="_blank" >
+                                                                        <p>Trello</p>
+                                                                        <img class="img-fluid" src="assets/icons/trello.png" alt="Trello Icon"/>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="scheduleTab" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="container p-5">
+                                        Schedule
+                                    </div>
+                                </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </main>
+
+</body>
+
+
+
+
+<script src="assets/vendor/owlcarousel/owl.carousel.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cms.js"></script>
+
+<script>
+
+</script>
+
+</html>

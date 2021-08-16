@@ -197,3 +197,4 @@ function updateDb(accessId, timeToAdd, element) {
 function deleteSpan(element) {
     element.parentNode.remove();
 }
+
