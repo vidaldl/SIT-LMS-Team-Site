@@ -27,13 +27,18 @@
 * 2. Color Variables | Overlay
 ********************************************************** */
 #overlay {
-    z-index: 100;
+    z-index: 2000;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: #0076c6;
+}
+
+.alert{
+    z-index: 1200;
+    position: fixed;
 }
 
 @-webkit-keyframes uil-ring-anim {

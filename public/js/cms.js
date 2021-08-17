@@ -83,6 +83,7 @@ async function addSlideShow(page) {
         $(buttonConfirm).addClass('d-block');
 
         $(buttonConfirm).click(function() {
+            $('#overlay').fadeIn("slow");
             // Get the canvas with image data from Cropper.js
             let canvas = cropper.getCroppedCanvas({
                 width: 1650,
@@ -110,7 +111,6 @@ async function addSlideShow(page) {
                             })
                         })
                         .catch(console.error);
-
                     setTimeout(function(){
                         location.reload();
 
@@ -184,17 +184,27 @@ function getSlideShow(page) {
         $(editSlideInput).appendTo('#editSlideShowInput');
 
         //Initialize Slide Show
-        $('.owl-carousel').owlCarousel({
-            loop:true,
-            autoplay:true,
-            autoplayHoverPause:true,
-            nav:false,
-            items: 1,
-            singleItem:true,
-            dots: true,
-        });
-
-
+        if(querySnapshot.size > 1) {
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                autoplay:true,
+                autoplayHoverPause:true,
+                nav:false,
+                items: 1,
+                singleItem:true,
+                dots: true,
+            });
+        } else {
+            $('.owl-carousel').owlCarousel({
+                loop:false,
+                autoplay:false,
+                mouseDrag:false,
+                nav:false,
+                items: 1,
+                singleItem:true,
+                dots: true,
+            });
+        }
 
         //Initialize Update
 
@@ -309,12 +319,13 @@ async function deleteSlide(docId) {
     console.log(docId);
 
     if(confirm('are you sure?')) {
+        $('#overlay').fadeIn();
 
         let deleteOld = await ref.child(nombre).delete()
             .then(() => {
                 db.collection("cms").doc("home").collection("banners").doc(docId).delete()
                     .then(() => {
-                        updateAlert('Image Deleted.')
+                        updateAlert('Image Deleted.');
 
                         setTimeout(function(){
                             location.reload();
