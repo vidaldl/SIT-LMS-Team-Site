@@ -394,7 +394,7 @@ function notificationTimer(time) {
             }
         }
 
-    }, (15 * 60000));
+    }, (60 * 60000));
     // }, 10000);
 
 }
