@@ -373,6 +373,7 @@ function loadPage() {
                     //displays lead/admin tools only for the right people
                     if (myData.admin || myData.title == "Project Lead") {
                         $.when($("#timeAdmin").removeClass('hide')).done(() => {
+                            $("#cmsLink").removeClass('hide');
                             $("#editPoints").removeClass('hide');
                         })
                     }
