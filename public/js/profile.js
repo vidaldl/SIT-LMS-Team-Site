@@ -342,7 +342,7 @@ function loadPage() {
                 .onSnapshot((querrySnapshot) => {
                     const myData = querrySnapshot.data();
 
-                    if(data.info.photo === "default-image.png" || data.info.photo.includes('.jpg')) {
+                    if(data.info.photo === "default-image.png" || data.info.photo.includes('.jpg') || data.info.photo === "") {
 
 
                     } else {
