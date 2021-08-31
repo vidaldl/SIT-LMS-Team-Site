@@ -2,6 +2,7 @@ let homePage = db.collection("cms").doc("home");
 
 getPageTitle(homePage);
 getSlideShow(homePage);
+getLinks(homePage);
 
 function getPageTitle(page) {
 
@@ -59,4 +60,35 @@ function getSlideShow(page) {
 
     });
 
+}
+
+//Links
+
+function getLinks(page) {
+    page.collection("links").orderBy("order", "asc").get().then(function (querySnapshot) {
+
+        var linksDB = "";
+
+        // Get Images from DB | Initialize Elements for update
+        querySnapshot.forEach((doc) => {
+            //Link elements
+            let linkData = doc.data();
+            linksDB += `<div class="col-md-4">
+                            <div class="box-link container">
+                                <a href="${linkData.link}" target="_blank">
+                                    <p>${linkData.title}</p>
+                                    <img class="img-fluid" src="${linkData.image}" alt="${linkData.title} Icon"/>
+                                </a>
+                            </div>
+                        </div>`;
+
+        })
+        //Append the elements from DB to DOM
+        $(linksDB).prependTo('#homeLinks');
+
+
+        //Initialize Update
+
+
+    });
 }

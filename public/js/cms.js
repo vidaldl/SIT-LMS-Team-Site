@@ -22,6 +22,7 @@ async function populatePage() {
     addSlideShow(homePage);
     getLinks(homePage);
     updateLinkModal(homePage);
+    createLink(homePage);
 
 
 
@@ -457,7 +458,6 @@ async function editLink(docc, page) {
         page.collection("links").doc(docc.id).update({
             "title": $('#' + docc.id + '-linkTitle').val(),
             "link": $('#' + docc.id + '-linkAddress').val(),
-            "order": orders.docs[0].data().order + 1,
         }).then(function() {
             updateAlert('Content Updated');
         }).catch((error) => {
@@ -551,4 +551,91 @@ function editLinkImage(docc, page) {
 
     });
 
+}
+
+async function createLink(page) {
+    // SLIDE SHOW ADD IMAGE
+    const fileUpload = $('#linkImage');
+    const ref = firebase.storage().ref('links/');
+    let title = $('#linkTitle').val();
+    let link = $('#linkAddress').val();
+    let orders = await homePage.collection("links").orderBy("order", "desc").limit(1).get();
+
+
+    $(fileUpload).change(function (evt) {
+        let firstFile = evt.target.files[0];
+        /***
+         * CropperJS init
+         */
+        let editor = $('.editorLink');
+        // let imgThumbnail = $('#modal');
+        $(fileUpload).addClass('d-none');
+        // $(imgThumbnail).addClass('d-none');
+        $(editor).removeClass('d-none');
+        $(editor).addClass('d-block');
+
+
+        // Create an image node for Cropper.js
+        let image = new Image();
+        image.src = URL.createObjectURL(firstFile);
+        $(image).appendTo(editor)
+        // Create Cropper.js
+        let cropper = new Cropper(image, { aspectRatio: 1 });
+
+        let buttonConfirm = $('.buttonConfirmLink');
+        $(buttonConfirm).removeClass('d-none');
+        $(buttonConfirm).addClass('d-block');
+
+        $(buttonConfirm).click(function() {
+            $('#overlay').fadeIn("slow");
+            // Get the canvas with image data from Cropper.js
+            let canvas = cropper.getCroppedCanvas({
+                width: 500,
+                height: 500
+            });
+            // Turn the canvas into a Blob (file object without a name)
+            canvas.toBlob(function(blob) {
+                // Create a new Dropzone file thumbnail
+                /********
+                 *FIRESTORE Storage functionality, Save in Database as well.
+                 */
+                let nombre;
+                page.collection("links").add({
+                    "title": $('#linkTitle').val(),
+                    "link": $('#linkAddress').val(),
+                    "order": orders.docs[0].data().order + 1,
+                }).then(async function(doc) {
+                    nombre = doc.id + '-image';
+
+                    //Upload New
+                    const task = await ref.child(nombre).put(blob).then(snapshot => snapshot.ref.getDownloadURL())
+                        .then( (url) => {
+                            console.log(url);
+                            page.collection("links").doc(doc.id).update({
+                                'image': url,
+                            })
+                        })
+                        .catch(console.error);
+                    setTimeout(function(){
+                        location.reload();
+
+                    }, 500);
+                });
+
+            }, 'image/png');
+            // Remove the editor from the view
+            $(buttonConfirm).removeClass('d-block');
+            $(buttonConfirm).addClass('d-none');
+
+            $(image).addClass('d-none');
+            $(editor).removeClass('d-block');
+            $(editor).addClass('d-none');
+            // $(imgThumbnail).removeClass('d-none');
+            // $(imgThumbnail).addClass('d-block');
+
+            updateAlert('Content Added!!');
+
+        });
+
+    });
 }
