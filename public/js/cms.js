@@ -315,7 +315,7 @@ function slideShowUpdate(doc, page) {
 
 
 async function deleteSlide(docId) {
-    const ref = firebase.storage().ref('test/');
+    const ref = firebase.storage().ref('banner_update/');
     const nombre = docId + '-slide';
 
     console.log(ref.child(nombre));
@@ -428,6 +428,9 @@ function updateLinkModal(page) {
                                                     <button class="${doc.id}-buttonConfirmLink btn btn-primary float-right mt-2 d-none">Confirm</button>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger" onclick="deleteLink('${doc.id}')">Delete Link<i class="fas fa-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -638,4 +641,33 @@ async function createLink(page) {
         });
 
     });
+}
+
+async function deleteLink(docId) {
+    const ref = firebase.storage().ref('links/');
+    const nombre = docId + '-image';
+
+    console.log(ref.child(nombre));
+    console.log(docId);
+
+    if(confirm('are you sure?')) {
+        $('#overlay').fadeIn();
+
+        let deleteOld = await ref.child(nombre).delete()
+            .then(() => {
+                db.collection("cms").doc("home").collection("links").doc(docId).delete()
+                    .then(() => {
+                        updateAlert('Image Deleted.');
+
+                        setTimeout(function(){
+                            location.reload();
+
+                        }, 1000);
+                    })
+                    .catch(console.error);
+            })
+            .catch(console.error);
+
+    }
+
 }
