@@ -16,6 +16,7 @@ function loadPage() {
 
 async function populatePage() {
     homePage = db.collection("cms").doc("home");
+    schedulePage = db.collection("cms").doc("schedule");
 
     getPageTitle(homePage);
     getSlideShow(homePage);
@@ -23,6 +24,7 @@ async function populatePage() {
     getLinks(homePage);
     updateLinkModal(homePage);
     createLink(homePage);
+    getSchedule(schedulePage);
 
 
 
@@ -671,3 +673,24 @@ async function deleteLink(docId) {
     }
 
 }
+
+function getSchedule(page) {
+    page.onSnapshot((querrySnapshot) => {
+        var scheduleLink = querrySnapshot.data().schedule_link;
+        $('#scheduleLinkDB').val(scheduleLink);
+    });
+
+    // Update
+    $('#updateScheduleLink').click(function() {
+        page.update({
+            "schedule_link" : $('#scheduleLinkDB').val(),
+        }).then(function() {
+            updateAlert('Content Updated');
+        }).catch((error) => {
+            alert('Could not update for some reason');
+            updateAlert('Could not update for some reason');
+        });
+
+    });
+}
+
