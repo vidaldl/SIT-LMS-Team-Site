@@ -430,7 +430,7 @@ function updateLinkModal(page) {
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-danger" onclick="deleteLink('${doc.id}')">Delete Link<i class="fas fa-trash"></i></button>
+                                            <button class="btn btn-danger" onclick="deleteLink('${doc.id}')">Delete Link <i class="fas fa-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
