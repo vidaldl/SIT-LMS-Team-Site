@@ -394,8 +394,8 @@ function notificationTimer(time) {
             }
         }
 
-    // }, (60 * 60000));
-    }, 10000);
+    }, (60 * 60000));
+    // }, 10000);
 
 }
 function notifyMe(isTrue) {
